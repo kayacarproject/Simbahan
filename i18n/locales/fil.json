@@ -1,0 +1,183 @@
+{
+  "countrySelect": {
+    "title": "Piliin ang Iyong Bansa",
+    "subtitle": "Piliin ang bansa kung saan matatagpuan ang iyong parokya. Maaari mo itong baguhin sa mga Setting.",
+    "continue": "Magpatuloy",
+    "countries": {
+      "PH": "Pilipinas",
+      "IN": "India"
+    }
+  },
+  "languageSelect": {
+    "title": "Piliin ang Wika",
+    "subtitle": "Piliin ang wikang nais mong gamitin sa app.",
+    "continue": "Magpatuloy",
+    "languages": {
+      "en": "Ingles",
+      "fil": "Filipino",
+      "hi": "Hindi",
+      "te": "Telugu",
+      "ta": "Tamil"
+    }
+  },
+  "common": {
+    "save": "I-save",
+    "cancel": "Kanselahin",
+    "back": "Bumalik",
+    "close": "Isara",
+    "confirm": "Kumpirmahin",
+    "loading": "Naglo-load…",
+    "error": "May nangyaring mali.",
+    "retry": "Subukan Muli",
+    "or": "o",
+    "yes": "Oo",
+    "no": "Hindi",
+    "done": "Tapos",
+    "next": "Susunod",
+    "skip": "Laktawan",
+    "edit": "I-edit",
+    "delete": "Burahin",
+    "view": "Tingnan Lahat",
+    "noData": "Wala pang nilalaman dito."
+  },
+  "nav": {
+    "home": "Home",
+    "schedule": "Iskedyul",
+    "readings": "Pagbabasa",
+    "community": "Komunidad",
+    "donate": "Mag-donate"
+  },
+  "auth": {
+    "loginTitle": "Maligayang Pagbabalik",
+    "loginSubtitle": "Mag-sign in sa iyong account sa parokya",
+    "registerTitle": "Lumikha ng Account",
+    "email": "Email Address",
+    "password": "Password",
+    "login": "Mag-login",
+    "register": "Lumikha ng Account",
+    "noAccount": "Wala pang account?",
+    "hasAccount": "Mayroon nang account?",
+    "signUp": "Mag-sign Up",
+    "signIn": "Mag-login",
+    "forgotPassword": "Nakalimutan ang Password?",
+    "logout": "Mag-logout",
+    "logoutConfirm": "Sigurado ka bang gusto mong lumabas?"
+  },
+  "home": {
+    "greeting": "Magandang umaga",
+    "todayReadings": "Pagbabasa Ngayon",
+    "massSchedule": "Iskedyul ng Misa",
+    "announcements": "Mga Anunsyo",
+    "upcomingEvents": "Mga Paparating na Gawain",
+    "noAnnouncements": "Walang anunsyo sa ngayon.",
+    "noEvents": "Walang paparating na gawain.",
+    "viewAll": "Tingnan Lahat"
+  },
+  "settings": {
+    "title": "Mga Setting",
+    "language": "Wika",
+    "theme": "Hitsura",
+    "notifications": "Mga Abiso",
+    "privacy": "Privacy",
+    "country": "Bansa",
+    "about": "Tungkol sa App",
+    "version": "Bersyon ng App",
+    "textSize": "Laki ng Teksto",
+    "changeCountry": "Baguhin ang Bansa",
+    "changeLanguage": "Baguhin ang Wika",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "changesSaved": "Matagumpay na na-save ang mga setting."
+  },
+  "profile": {
+    "title": "Aking Profile",
+    "edit": "I-edit ang Profile",
+    "firstName": "Pangalan",
+    "lastName": "Apelyido",
+    "email": "Email",
+    "phone": "Telepono",
+    "barangay": "Barangay",
+    "birthday": "Kaarawan",
+    "civilStatus": "Civil Status",
+    "saveChanges": "I-save ang mga Pagbabago"
+  },
+  "announcements": {
+    "title": "Mga Anunsyo",
+    "markRead": "Markahan Bilang Nabasa",
+    "markAllRead": "Markahan Lahat Bilang Nabasa",
+    "unread": "Hindi pa Nababasa"
+  },
+  "events": {
+    "title": "Mga Gawain",
+    "rsvp": "RSVP",
+    "attending": "Dadalo",
+    "notAttending": "Hindi Dadalo",
+    "details": "Detalye ng Gawain",
+    "location": "Lokasyon",
+    "date": "Petsa",
+    "time": "Oras"
+  },
+  "readings": {
+    "title": "Pang-araw-araw na Pagbabasa",
+    "firstReading": "Unang Pagbabasa",
+    "psalm": "Salmo",
+    "secondReading": "Ikalawang Pagbabasa",
+    "gospel": "Ebanghelyo",
+    "reflection": "Pagninilay",
+    "noReadings": "Walang pagbabasa para ngayon."
+  },
+  "massSchedule": {
+    "title": "Iskedyul ng Misa",
+    "sunday": "Linggo",
+    "monday": "Lunes",
+    "tuesday": "Martes",
+    "wednesday": "Miyerkules",
+    "thursday": "Huwebes",
+    "friday": "Biyernes",
+    "saturday": "Sabado",
+    "daily": "Araw-araw na Misa",
+    "language": "Wika",
+    "location": "Lokasyon"
+  },
+  "donations": {
+    "title": "Mga Donasyon",
+    "give": "Magbigay",
+    "amount": "Halaga",
+    "fund": "Pondo",
+    "history": "Kasaysayan ng Donasyon",
+    "thankYou": "Salamat sa iyong kagandahang-loob.",
+    "noHistory": "Wala pang kasaysayan ng donasyon."
+  },
+  "community": {
+    "title": "Komunidad",
+    "members": "Mga Miyembro",
+    "search": "Hanapin ang miyembro…",
+    "noMembers": "Walang nahanap na miyembro.",
+    "family": "Aking Pamilya"
+  },
+  "sacraments": {
+    "title": "Mga Sakramento",
+    "request": "Humiling ng Sakramento",
+    "baptism": "Binyag",
+    "confirmation": "Kumpirmasyon",
+    "marriage": "Kasal",
+    "anointing": "Huling Pahid",
+    "status": "Status",
+    "pending": "Nakabinbin",
+    "approved": "Naaprubahan",
+    "completed": "Nakumpleto"
+  },
+  "novenas": {
+    "title": "Mga Nobena",
+    "rosary": "Banal na Rosaryo",
+    "day": "Araw",
+    "pray": "Manalangin",
+    "bookmark": "I-bookmark",
+    "bookmarked": "Na-bookmark na"
+  },
+  "notifications": {
+    "title": "Mga Abiso",
+    "markRead": "Markahan Bilang Nabasa",
+    "empty": "Wala kang mga abiso."
+  }
+}

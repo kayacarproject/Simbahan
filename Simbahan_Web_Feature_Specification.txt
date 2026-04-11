@@ -1,0 +1,388 @@
+================================================================================
+  SIMBAHAN — COMPLETE WEB FEATURE SPECIFICATION
+  Based on the existing mobile app structure (routes, stores, components)
+================================================================================
+
+
+================================================================================
+1. CORE FEATURES
+================================================================================
+
+USER AUTHENTICATION
+  - Login with email/password
+  - Register with parish membership option
+  - Forgot password / reset via email
+  - Persistent session (JWT or Firebase Auth tokens)
+  - Guest/public browsing mode (unauthenticated access to public pages)
+
+USER PROFILE
+  - View and edit profile (name, photo, contact info, family)
+  - Parish membership status badge
+  - Bookmarked content (announcements, events, novenas)
+  - Donation history tied to profile
+  - Notification preferences
+
+DASHBOARD / HOME
+  - Hero banner with upcoming Mass schedule
+  - Quick-access cards: Mass Schedule, Events, Readings, Donations
+  - Latest announcements strip
+  - Today's liturgical reading snippet
+  - Upcoming events preview
+  - Demo mode banner (already in app — replicate on web)
+
+NAVIGATION
+  - Desktop: sticky top header with logo + nav links + auth buttons
+  - Mobile web: bottom tab bar (mirrors app tabs)
+  - Sidebar drawer for authenticated users (mirrors app Sidebar component)
+  - Breadcrumbs on inner pages
+
+NOTIFICATIONS
+  - In-app notification center (/notifications)
+  - Push notification opt-in (web push via Firebase Cloud Messaging)
+  - Notification types: Mass reminders, event alerts, announcement posts, donation receipts
+
+
+================================================================================
+2. CHURCH-SPECIFIC FEATURES
+================================================================================
+
+MASS SCHEDULE
+  - Daily and weekly Mass timetable
+  - Filter by: day, Mass type (regular, special, anticipated)
+  - Special Mass schedule (Holy Week, Simbang Gabi, Feast Days)
+  - "Add to Calendar" button (.ics export)
+  - Celebrant info per Mass slot
+
+EVENTS
+  - Events listing with card grid (/events)
+  - Event detail page (/events/[id]) — description, date, venue, poster image
+  - Filter by category: Feast, Program, Sacrament, Community
+  - RSVP / "I'm attending" toggle (authenticated)
+  - Share event link
+
+ANNOUNCEMENTS
+  - Announcements feed (/announcements)
+  - Detail page (/announcements/[id])
+  - Category tags (General, Urgent, Liturgical)
+  - Bookmark announcement
+
+LITURGICAL READINGS
+  - Today's readings (/readings/today)
+  - First Reading, Psalm, Second Reading, Gospel
+  - Liturgical calendar color indicator
+  - Daily reflection snippet
+
+SACRAMENTS
+  - Sacraments overview page (/sacraments)
+  - Online request form (/sacraments/request) — Baptism, Confirmation, Marriage, Anointing, etc.
+  - Requirements checklist per sacrament
+  - Request status tracking (pending / approved / completed)
+
+NOVENAS & PRAYERS
+  - Novena listing (/novenas)
+  - Novena detail with day-by-day prayers (/novenas/[id])
+  - Rosary guide (/novenas/rosary) — mystery selector, bead-by-bead flow
+  - Audio playback for prayers (optional)
+
+HOLY WEEK & SIMBANG GABI
+  - Dedicated landing pages (/holy-week, /simbang-gabi)
+  - Schedule, activities, and special instructions
+  - Countdown timer to event start
+
+ONLINE DONATIONS
+  - Donation listing by cause (/donations)
+  - Donation detail / campaign page (/donations/[id])
+  - Donation form: amount, payment method, dedication message
+  - Donation history for authenticated users (/donations/history)
+  - Payment integration: GCash, PayMaya, credit card (via PayMongo or Stripe)
+  - Receipt generation (PDF download / email)
+
+PARISH INFO
+  - Full parish profile page (/parish-info)
+  - History, mission, vision, patron saint
+  - Parish priest and staff directory
+  - Office hours and contact details
+  - Embedded Google Maps
+
+
+================================================================================
+3. MEDIA FEATURES
+================================================================================
+
+LIVE STREAMING
+  - Embedded live stream player (YouTube Live / Facebook Live embed)
+  - Live indicator badge on home and nav
+  - Stream schedule display
+
+VIDEO LIBRARY
+  - Sermon/homily video archive
+  - Filter by: date, celebrant, occasion
+  - Embedded YouTube player or hosted video
+
+PHOTO GALLERY
+  - Event photo albums grid
+  - Lightbox viewer
+  - Album categories: Feasts, Sacraments, Community Events
+
+AUDIO
+  - Homily audio player
+  - Background prayer audio (Rosary, Novenas)
+  - Persistent mini-player at bottom of screen
+
+
+================================================================================
+4. COMMUNITY FEATURES
+================================================================================
+
+MEMBER DIRECTORY
+  - Searchable member list (/community)
+  - Member profile card (/community/member/[id])
+  - Privacy controls (members can hide contact info)
+
+FAMILY RECORDS
+  - Family unit registration (/family)
+  - Link family members to a household
+
+MINISTRIES & GROUPS
+  - Ministry listing with descriptions
+  - Join request form
+  - Ministry leader contact
+
+VOLUNTEER REGISTRATION
+  - Volunteer sign-up form
+  - Available roles and schedules
+  - Volunteer history on profile
+
+
+================================================================================
+5. ADMIN PANEL FEATURES
+================================================================================
+
+ADMIN DASHBOARD (/admin)
+  - KPI cards: total members, donations this month, upcoming events, active announcements
+  - Recent activity feed
+  - Quick-create buttons
+
+CONTENT MANAGEMENT
+  - CRUD for: Announcements, Events, Mass Schedule, Novenas, Readings, Gallery
+  - Rich text editor (Tiptap or Quill)
+  - Image upload with preview
+
+USER MANAGEMENT
+  - Member list with search and filter
+  - Role assignment: Admin, Staff, Member, Guest
+  - Account suspension / activation
+
+DONATION TRACKING
+  - Donation records table with filters (date, cause, status)
+  - Export to CSV
+  - Campaign progress bars
+
+NOTIFICATION CONTROL
+  - Compose and send push notifications
+  - Schedule notifications
+  - Notification history log
+
+SACRAMENT REQUEST MANAGEMENT
+  - Incoming request queue
+  - Status update (approve / reject / complete)
+  - Notes and communication log per request
+
+
+================================================================================
+6. UI/UX REQUIREMENTS
+================================================================================
+
+RESPONSIVE BREAKPOINTS
+  - Mobile:  < 768px       — bottom tab nav, single column
+  - Tablet:  768px–1024px  — sidebar nav, 2-column grid
+  - Desktop: > 1024px      — full header nav, 3-column grid
+
+THEME — DESIGN TOKENS
+  Token        Value
+  -----------  ---------
+  Primary      #1A2B5E
+  Accent       #C9922A
+  Error        #9B1D20
+  Success      #2D6A4F
+  Background   #FAFAF5
+  Text         #1A1A1A
+
+  - Fonts: Playfair Display (headings) + DM Sans (body) — matches app exactly
+  - Dark / Light mode toggle (mirrors app ThemeContext)
+  - Spiritual aesthetic: subtle cross/floral motifs, warm neutrals, gold accents
+
+NAVIGATION PATTERNS
+  - Desktop: sticky header with logo, nav links, auth CTA, theme toggle
+  - Mobile web: fixed bottom tab bar (Home, Schedule, Events, Donate, More)
+  - Authenticated: avatar dropdown with profile, settings, logout
+
+
+================================================================================
+7. TECHNICAL REQUIREMENTS
+================================================================================
+
+FRONTEND
+  - Next.js 14 (App Router) — SSR for SEO-critical pages (home, events, readings)
+  - TailwindCSS — reuse same design tokens
+  - Zustand — port existing stores (authStore, bookmarkStore, churchStore)
+  - React Query (TanStack) — server state, caching, background refetch
+  - Framer Motion — page transitions, card animations
+
+BACKEND
+  - Next.js API Routes for lightweight endpoints
+  - Supabase — PostgreSQL database + Auth + Storage + Realtime
+  - Firebase Cloud Messaging — push notifications (web push)
+  - PayMongo — Philippine payment gateway (GCash, PayMaya, cards)
+
+DATABASE SCHEMA (Supabase)
+  users           — id, email, name, role, avatar_url, parish_id, created_at
+  families        — id, name, address, members[]
+  announcements   — id, title, body, category, image_url, published_at
+  events          — id, title, description, date, venue, category, poster_url
+  mass_schedule   — id, day_of_week, time, type, celebrant, is_special
+  donations       — id, user_id, cause_id, amount, method, status, created_at
+  donation_causes — id, title, description, target_amount, image_url
+  sacrament_reqs  — id, user_id, type, status, notes, scheduled_at
+  novenas         — id, title, days[], audio_url
+  notifications   — id, user_id, title, body, type, read, created_at
+  media           — id, type (video/audio/photo), title, url, album_id
+
+API STRUCTURE
+  /api/auth/*              — login, register, reset
+  /api/announcements/*     — CRUD
+  /api/events/*            — CRUD + RSVP
+  /api/mass-schedule/*     — read + admin update
+  /api/donations/*         — create, history, causes
+  /api/sacraments/*        — request, status update
+  /api/novenas/*           — read
+  /api/readings/today      — fetch from API (Universalis or custom)
+  /api/notifications/*     — list, mark-read, send (admin)
+  /api/media/*             — upload, list, delete
+  /api/admin/*             — dashboard stats, user management
+
+AUTHENTICATION
+  - Supabase Auth (email/password + magic link)
+  - JWT stored in httpOnly cookies
+  - Row-Level Security (RLS) on all Supabase tables
+  - Role-based access: guest | member | staff | admin
+
+HOSTING
+  - Vercel — frontend + API routes (zero-config Next.js)
+  - Supabase Cloud — database + storage
+  - Cloudflare — CDN + DDoS protection for media assets
+
+
+================================================================================
+8. ADDITIONAL FEATURES
+================================================================================
+
+MULTI-LANGUAGE
+  - Filipino (default) and English
+  - next-intl for i18n routing (/en/*, /fil/*)
+  - Language toggle in header/settings
+
+DARK / LIGHT MODE
+  - System preference detection + manual toggle
+  - Persisted in localStorage (mirrors app ThemeContext)
+
+SEARCH
+  - Global search bar (announcements, events, novenas, members)
+  - Supabase full-text search (to_tsvector)
+  - Search results page with category tabs
+
+SEO
+  - generateMetadata() per page (Next.js App Router)
+  - Open Graph images for events and announcements
+  - Structured data (JSON-LD) for events and organization
+  - sitemap.xml and robots.txt auto-generated
+
+PERFORMANCE
+  - next/image for all images (WebP, lazy load)
+  - Static generation for: home, mass schedule, parish info
+  - ISR (Incremental Static Regeneration) for announcements and events
+  - Code splitting per route
+  - Lighthouse target: 90+ on all metrics
+
+
+================================================================================
+9. PAGES REQUIRED
+================================================================================
+
+PUBLIC (no auth required)
+  /                        Home
+  /about                   About the Parish
+  /mass-schedule           Mass Schedule
+  /events                  Events listing
+  /events/[id]             Event detail
+  /announcements           Announcements feed
+  /announcements/[id]      Announcement detail
+  /readings/today          Daily Readings
+  /novenas                 Novena listing
+  /novenas/[id]            Novena detail
+  /novenas/rosary          Rosary guide
+  /holy-week               Holy Week page
+  /simbang-gabi            Simbang Gabi page
+  /donations               Donation causes
+  /donations/[id]          Donation campaign
+  /parish-info             Parish profile
+  /media                   Media hub
+  /contact                 Contact & map
+  /login                   Login
+  /register                Register
+
+AUTHENTICATED
+  /home                    Personalized dashboard
+  /profile                 Profile view
+  /profile/edit            Edit profile
+  /family                  Family records
+  /community               Member directory
+  /community/member/[id]   Member profile
+  /sacraments              Sacraments overview
+  /sacraments/request      Request form
+  /donations/history       My donation history
+  /notifications           Notification center
+
+ADMIN
+  /admin                   Dashboard
+  /admin/announcements     Manage announcements
+  /admin/events            Manage events
+  /admin/mass-schedule     Manage schedule
+  /admin/donations         Donation tracking
+  /admin/users             User management
+  /admin/sacraments        Request queue
+  /admin/media             Media library
+  /admin/notifications     Send notifications
+
+
+================================================================================
+10. DELIVERABLES SUMMARY
+================================================================================
+
+SUGGESTED TECH STACK
+  Layer          Choice                    Reason
+  -------------  ------------------------  ----------------------------
+  Frontend       Next.js 14 + TailwindCSS  SSR/SSG, SEO, App Router
+  State          Zustand + React Query     Port from app, server state
+  Auth           Supabase Auth             RLS, JWT, magic link
+  Database       Supabase (PostgreSQL)     Realtime, storage, RLS
+  Payments       PayMongo                  PH-local GCash/PayMaya
+  Notifications  Firebase FCM              Web push support
+  Hosting        Vercel + Supabase Cloud   Zero-config, scalable
+  i18n           next-intl                 Filipino/English
+  Animations     Framer Motion             Mirrors Reanimated feel
+
+FUTURE ENHANCEMENTS
+  - Mobile app sync (shared Supabase backend between Expo app and web)
+  - QR code check-in for events and Mass attendance
+  - Online confession appointment booking with calendar integration
+  - Parish giving campaigns with progress tracking
+  - Weekly bulletin PDF auto-generation
+  - SMS notifications via Semaphore (PH SMS gateway)
+  - Offline support via PWA (service worker + cache)
+  - AI-powered daily reflection generator
+
+
+================================================================================
+  END OF DOCUMENT
+================================================================================

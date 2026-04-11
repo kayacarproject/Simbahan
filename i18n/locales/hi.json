@@ -1,0 +1,183 @@
+{
+  "countrySelect": {
+    "title": "अपना देश चुनें",
+    "subtitle": "वह देश चुनें जहाँ आपका पल्ली स्थित है। आप इसे बाद में सेटिंग्स में बदल सकते हैं।",
+    "continue": "जारी रखें",
+    "countries": {
+      "PH": "फ़िलीपींस",
+      "IN": "भारत"
+    }
+  },
+  "languageSelect": {
+    "title": "भाषा चुनें",
+    "subtitle": "ऐप के लिए अपनी पसंदीदा भाषा चुनें।",
+    "continue": "जारी रखें",
+    "languages": {
+      "en": "अंग्रेज़ी",
+      "fil": "फ़िलिपीनो",
+      "hi": "हिन्दी",
+      "te": "तेलुगू",
+      "ta": "तमिल"
+    }
+  },
+  "common": {
+    "save": "सहेजें",
+    "cancel": "रद्द करें",
+    "back": "वापस",
+    "close": "बंद करें",
+    "confirm": "पुष्टि करें",
+    "loading": "लोड हो रहा है…",
+    "error": "कुछ गलत हो गया।",
+    "retry": "पुनः प्रयास करें",
+    "or": "या",
+    "yes": "हाँ",
+    "no": "नहीं",
+    "done": "हो गया",
+    "next": "अगला",
+    "skip": "छोड़ें",
+    "edit": "संपादित करें",
+    "delete": "हटाएं",
+    "view": "सभी देखें",
+    "noData": "यहाँ अभी कुछ नहीं है।"
+  },
+  "nav": {
+    "home": "होम",
+    "schedule": "समय-सारणी",
+    "readings": "पाठ",
+    "community": "समुदाय",
+    "donate": "दान करें"
+  },
+  "auth": {
+    "loginTitle": "वापस स्वागत है",
+    "loginSubtitle": "अपने पल्ली खाते में साइन इन करें",
+    "registerTitle": "खाता बनाएं",
+    "email": "ईमेल पता",
+    "password": "पासवर्ड",
+    "login": "साइन इन करें",
+    "register": "खाता बनाएं",
+    "noAccount": "खाता नहीं है?",
+    "hasAccount": "पहले से खाता है?",
+    "signUp": "साइन अप करें",
+    "signIn": "साइन इन करें",
+    "forgotPassword": "पासवर्ड भूल गए?",
+    "logout": "साइन आउट करें",
+    "logoutConfirm": "क्या आप वाकई साइन आउट करना चाहते हैं?"
+  },
+  "home": {
+    "greeting": "शुभ प्रभात",
+    "todayReadings": "आज के पाठ",
+    "massSchedule": "मास समय-सारणी",
+    "announcements": "घोषणाएं",
+    "upcomingEvents": "आगामी कार्यक्रम",
+    "noAnnouncements": "इस समय कोई घोषणा नहीं।",
+    "noEvents": "कोई आगामी कार्यक्रम नहीं।",
+    "viewAll": "सभी देखें"
+  },
+  "settings": {
+    "title": "सेटिंग्स",
+    "language": "भाषा",
+    "theme": "रूप-रंग",
+    "notifications": "सूचनाएं",
+    "privacy": "गोपनीयता",
+    "country": "देश",
+    "about": "ऐप के बारे में",
+    "version": "ऐप संस्करण",
+    "textSize": "टेक्स्ट आकार",
+    "changeCountry": "देश बदलें",
+    "changeLanguage": "भाषा बदलें",
+    "lightMode": "लाइट मोड",
+    "darkMode": "डार्क मोड",
+    "changesSaved": "सेटिंग्स सफलतापूर्वक सहेजी गई।"
+  },
+  "profile": {
+    "title": "मेरी प्रोफ़ाइल",
+    "edit": "प्रोफ़ाइल संपादित करें",
+    "firstName": "पहला नाम",
+    "lastName": "अंतिम नाम",
+    "email": "ईमेल",
+    "phone": "फ़ोन",
+    "barangay": "क्षेत्र",
+    "birthday": "जन्मदिन",
+    "civilStatus": "वैवाहिक स्थिति",
+    "saveChanges": "बदलाव सहेजें"
+  },
+  "announcements": {
+    "title": "घोषणाएं",
+    "markRead": "पढ़ा हुआ चिह्नित करें",
+    "markAllRead": "सभी पढ़ा हुआ चिह्नित करें",
+    "unread": "अपठित"
+  },
+  "events": {
+    "title": "कार्यक्रम",
+    "rsvp": "RSVP",
+    "attending": "उपस्थित",
+    "notAttending": "अनुपस्थित",
+    "details": "कार्यक्रम विवरण",
+    "location": "स्थान",
+    "date": "तारीख",
+    "time": "समय"
+  },
+  "readings": {
+    "title": "दैनिक पाठ",
+    "firstReading": "पहला पाठ",
+    "psalm": "भजन",
+    "secondReading": "दूसरा पाठ",
+    "gospel": "सुसमाचार",
+    "reflection": "मनन",
+    "noReadings": "आज के लिए कोई पाठ उपलब्ध नहीं।"
+  },
+  "massSchedule": {
+    "title": "मास समय-सारणी",
+    "sunday": "रविवार",
+    "monday": "सोमवार",
+    "tuesday": "मंगलवार",
+    "wednesday": "बुधवार",
+    "thursday": "गुरुवार",
+    "friday": "शुक्रवार",
+    "saturday": "शनिवार",
+    "daily": "दैनिक मास",
+    "language": "भाषा",
+    "location": "स्थान"
+  },
+  "donations": {
+    "title": "दान",
+    "give": "दान दें",
+    "amount": "राशि",
+    "fund": "निधि",
+    "history": "दान इतिहास",
+    "thankYou": "आपकी उदारता के लिए धन्यवाद।",
+    "noHistory": "अभी तक कोई दान इतिहास नहीं।"
+  },
+  "community": {
+    "title": "समुदाय",
+    "members": "सदस्य",
+    "search": "सदस्य खोजें…",
+    "noMembers": "कोई सदस्य नहीं मिला।",
+    "family": "मेरा परिवार"
+  },
+  "sacraments": {
+    "title": "संस्कार",
+    "request": "संस्कार का अनुरोध करें",
+    "baptism": "बपतिस्मा",
+    "confirmation": "दृढ़ीकरण",
+    "marriage": "विवाह",
+    "anointing": "रोगियों का अभिषेक",
+    "status": "स्थिति",
+    "pending": "लंबित",
+    "approved": "स्वीकृत",
+    "completed": "पूर्ण"
+  },
+  "novenas": {
+    "title": "नवेना",
+    "rosary": "पवित्र माला",
+    "day": "दिन",
+    "pray": "प्रार्थना करें",
+    "bookmark": "बुकमार्क",
+    "bookmarked": "बुकमार्क किया गया"
+  },
+  "notifications": {
+    "title": "सूचनाएं",
+    "markRead": "पढ़ा हुआ चिह्नित करें",
+    "empty": "आपके पास कोई सूचना नहीं है।"
+  }
+}

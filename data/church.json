@@ -1,0 +1,41 @@
+{
+  "id": "church_001",
+  "name": "Saint Joseph Parish",
+  "patron": "Saint Joseph",
+  "diocese": "Archdiocese of Manila",
+  "address": "123 Parish Road, Quezon City, Metro Manila",
+  "barangay": "Barangay Holy Spirit",
+  "city": "Quezon City",
+  "province": "Metro Manila",
+  "zipCode": "1127",
+  "phone": "+63 2 8123 4567",
+  "email": "info@stjosephparish.ph",
+  "website": "https://stjosephparish.ph",
+  "pastor": "Fr. Jose Maria Santos",
+  "assistantPastor": "Fr. Miguel dela Cruz",
+  "officeHours": "Monday–Friday, 8:00 AM – 5:00 PM",
+  "image": "https://picsum.photos/id/1060/600/400",
+  "feastDay": "March 19",
+  "founded": "1952",
+  "socialLinks": {
+    "facebook": "https://facebook.com/stjosephparish",
+    "youtube": "https://youtube.com/stjosephparish",
+    "instagram": "https://instagram.com/stjosephparish"
+  },
+  "ministries": [
+    "Basic Ecclesial Community",
+    "Youth Ministry",
+    "Choir",
+    "Lectors & Commentators",
+    "Extraordinary Ministers of Holy Communion",
+    "Knights of Columbus",
+    "Legion of Mary",
+    "Couples for Christ",
+    "Parish Pastoral Council"
+  ],
+  "bankDetails": {
+    "bankName": "BDO Unibank",
+    "accountName": "Saint Joseph Parish",
+    "accountNumber": "1234-5678-90"
+  }
+}

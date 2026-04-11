@@ -1,0 +1,58 @@
+[
+  {
+    "id": "ms_001",
+    "day": "Sunday",
+    "dayIndex": 0,
+    "times": ["6:00 AM", "8:00 AM", "10:00 AM", "12:00 NN", "6:00 PM"],
+    "language": ["Filipino", "Filipino", "English", "Filipino", "Filipino"],
+    "notes": "Family Mass at 10:00 AM"
+  },
+  {
+    "id": "ms_002",
+    "day": "Monday",
+    "dayIndex": 1,
+    "times": ["6:00 AM", "6:00 PM"],
+    "language": ["Filipino", "Filipino"],
+    "notes": ""
+  },
+  {
+    "id": "ms_003",
+    "day": "Tuesday",
+    "dayIndex": 2,
+    "times": ["6:00 AM", "6:00 PM"],
+    "language": ["Filipino", "Filipino"],
+    "notes": ""
+  },
+  {
+    "id": "ms_004",
+    "day": "Wednesday",
+    "dayIndex": 3,
+    "times": ["6:00 AM", "6:00 PM"],
+    "language": ["Filipino", "Filipino"],
+    "notes": ""
+  },
+  {
+    "id": "ms_005",
+    "day": "Thursday",
+    "dayIndex": 4,
+    "times": ["6:00 AM", "6:00 PM"],
+    "language": ["Filipino", "Filipino"],
+    "notes": ""
+  },
+  {
+    "id": "ms_006",
+    "day": "Friday",
+    "dayIndex": 5,
+    "times": ["6:00 AM", "12:00 NN", "6:00 PM"],
+    "language": ["Filipino", "Filipino", "Filipino"],
+    "notes": "Stations of the Cross at 5:30 PM during Lent"
+  },
+  {
+    "id": "ms_007",
+    "day": "Saturday",
+    "dayIndex": 6,
+    "times": ["6:00 AM", "5:00 PM"],
+    "language": ["Filipino", "Filipino"],
+    "notes": "5:00 PM is Anticipated Sunday Mass"
+  }
+]

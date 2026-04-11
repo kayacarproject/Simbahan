@@ -1,0 +1,6 @@
+[
+  { "id": "conf_001", "day": "Saturday", "time": "4:00 PM – 4:45 PM", "priest": "Fr. Jose Maria Santos" },
+  { "id": "conf_002", "day": "Sunday", "time": "7:30 AM – 7:55 AM", "priest": "Fr. Roberto Cruz" },
+  { "id": "conf_003", "day": "Sunday", "time": "9:30 AM – 9:55 AM", "priest": "Fr. Jose Maria Santos" },
+  { "id": "conf_004", "day": "First Friday", "time": "5:30 PM – 5:55 PM", "priest": "Fr. Roberto Cruz" }
+]

@@ -1,0 +1,76 @@
+[
+  {
+    "id": "rdg_001",
+    "date": "2025-01-05",
+    "season": "christmas",
+    "weekday": "Sunday",
+    "title": "The Epiphany of the Lord",
+    "firstReading": {
+      "book": "Isaiah",
+      "reference": "Is 60:1-6",
+      "text": "Rise up in splendor, Jerusalem! Your light has come, the glory of the Lord shines upon you."
+    },
+    "psalm": {
+      "reference": "Ps 72:1-2, 7-8, 10-11, 12-13",
+      "response": "Lord, every nation on earth will adore you."
+    },
+    "secondReading": {
+      "book": "Ephesians",
+      "reference": "Eph 3:2-3a, 5-6",
+      "text": "Brothers and sisters: You have heard of the stewardship of God's grace that was given to me for your benefit."
+    },
+    "gospel": {
+      "book": "Matthew",
+      "reference": "Mt 2:1-12",
+      "text": "When Jesus was born in Bethlehem of Judea, in the days of King Herod, behold, magi from the east arrived in Jerusalem."
+    }
+  },
+  {
+    "id": "rdg_002",
+    "date": "2025-01-06",
+    "season": "christmas",
+    "weekday": "Monday",
+    "title": "Monday after Epiphany",
+    "firstReading": {
+      "book": "1 John",
+      "reference": "1 Jn 3:22—4:6",
+      "text": "Beloved: We receive from him whatever we ask, because we keep his commandments and do what pleases him."
+    },
+    "psalm": {
+      "reference": "Ps 2:7bc-8, 10-12a",
+      "response": "I will give you all the nations for an inheritance."
+    },
+    "secondReading": null,
+    "gospel": {
+      "book": "Matthew",
+      "reference": "Mt 4:12-17, 23-25",
+      "text": "When Jesus heard that John had been arrested, he withdrew to Galilee."
+    }
+  },
+  {
+    "id": "rdg_003",
+    "date": "2025-01-12",
+    "season": "ordinary",
+    "weekday": "Sunday",
+    "title": "The Baptism of the Lord",
+    "firstReading": {
+      "book": "Isaiah",
+      "reference": "Is 42:1-4, 6-7",
+      "text": "Here is my servant whom I uphold, my chosen one with whom I am pleased."
+    },
+    "psalm": {
+      "reference": "Ps 29:1-2, 3-4, 3, 9-10",
+      "response": "The Lord will bless his people with peace."
+    },
+    "secondReading": {
+      "book": "Acts",
+      "reference": "Acts 10:34-38",
+      "text": "Peter proceeded to speak to those gathered in the house of Cornelius."
+    },
+    "gospel": {
+      "book": "Luke",
+      "reference": "Lk 3:15-16, 21-22",
+      "text": "The people were filled with expectation, and all were asking in their hearts whether John might be the Christ."
+    }
+  }
+]

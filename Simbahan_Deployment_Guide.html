@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+  <meta charset="UTF-8">
+  <meta name="ProgId" content="Word.Document">
+  <meta name="Generator" content="Microsoft Word 15">
+  <title>Simbahan Mobile Application Deployment Guide</title>
+  <!--[if gte mso 9]>
+  <xml>
+    <w:WordDocument>
+      <w:View>Print</w:View>
+      <w:Zoom>100</w:Zoom>
+      <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+  </xml>
+  <![endif]-->
+  <style>
+    /* ===== PAGE SETUP ===== */
+    @page {
+      size: A4;
+      margin: 2.54cm 2.54cm 2.54cm 2.54cm;
+      mso-header-margin: 1.25cm;
+      mso-footer-margin: 1.25cm;
+    }
+
+    body {
+      font-family: Calibri, sans-serif;
+      font-size: 11pt;
+      color: #1A1A1A;
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ===== COVER PAGE ===== */
+    .cover-page {
+      page-break-after: always;
+      text-align: center;
+      padding-top: 120px;
+    }
+
+    .cover-title {
+      font-family: Calibri, sans-serif;
+      font-size: 28pt;
+      font-weight: bold;
+      color: #1A2B5E;
+      margin: 0 0 10px 0;
+      letter-spacing: 1px;
+    }
+
+    .cover-subtitle {
+      font-family: Calibri, sans-serif;
+      font-size: 14pt;
+      color: #4A4A6A;
+      margin: 0 0 60px 0;
+    }
+
+    .cover-divider {
+      border: none;
+      border-top: 3px solid #1A2B5E;
+      width: 80px;
+      margin: 30px auto;
+    }
+
+    .cover-meta {
+      font-size: 11pt;
+      color: #555;
+      line-height: 2.2;
+      margin-top: 60px;
+    }
+
+    .cover-meta table {
+      margin: 0 auto;
+      border: none;
+      width: 360px;
+    }
+
+    .cover-meta td {
+      border: none;
+      padding: 3px 8px;
+      text-align: left;
+    }
+
+    .cover-meta td:first-child {
+      font-weight: bold;
+      color: #1A2B5E;
+      width: 160px;
+    }
+
+    .cover-footer {
+      position: absolute;
+      bottom: 60px;
+      width: 100%;
+      text-align: center;
+      font-size: 9pt;
+      color: #aaa;
+    }
+
+    /* ===== HEADINGS ===== */
+    h1 {
+      font-family: Calibri, sans-serif;
+      font-size: 18pt;
+      font-weight: bold;
+      color: #1A2B5E;
+      margin: 28px 0 8px 0;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #1A2B5E;
+      page-break-after: avoid;
+    }
+
+    h2 {
+      font-family: Calibri, sans-serif;
+      font-size: 13pt;
+      font-weight: bold;
+      color: #1A2B5E;
+      margin: 22px 0 6px 0;
+      page-break-after: avoid;
+    }
+
+    h3 {
+      font-family: Calibri, sans-serif;
+      font-size: 11pt;
+      font-weight: bold;
+      color: #2E4080;
+      margin: 16px 0 4px 0;
+      page-break-after: avoid;
+    }
+
+    /* ===== PARAGRAPHS ===== */
+    p {
+      margin: 0 0 8px 0;
+      font-size: 11pt;
+    }
+
+    /* ===== TABLES ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 20px 0;
+      font-size: 10.5pt;
+      page-break-inside: avoid;
+    }
+
+    thead tr {
+      background-color: #1A2B5E;
+      color: #ffffff;
+    }
+
+    thead th {
+      padding: 9px 12px;
+      text-align: left;
+      font-weight: bold;
+      font-size: 10.5pt;
+      border: 1px solid #1A2B5E;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #F0F3FA;
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: #FFFFFF;
+    }
+
+    tbody td {
+      padding: 8px 12px;
+      border: 1px solid #C9D0E0;
+      vertical-align: top;
+      color: #1A1A1A;
+    }
+
+    /* ===== CODE BLOCKS ===== */
+    pre {
+      background-color: #F4F4F8;
+      border-left: 4px solid #1A2B5E;
+      padding: 12px 16px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 9.5pt;
+      color: #1A1A1A;
+      margin: 10px 0 18px 0;
+      white-space: pre-wrap;
+      word-break: break-all;
+      page-break-inside: avoid;
+    }
+
+    code {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 9.5pt;
+      background-color: #ECEEF5;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    /* ===== LISTS ===== */
+    ol {
+      margin: 6px 0 14px 0;
+      padding-left: 22px;
+    }
+
+    ol li {
+      margin-bottom: 5px;
+      font-size: 11pt;
+    }
+
+    ul {
+      margin: 6px 0 14px 0;
+      padding-left: 22px;
+    }
+
+    ul li {
+      margin-bottom: 4px;
+      font-size: 11pt;
+    }
+
+    /* ===== NOTICE BOX ===== */
+    .notice {
+      background-color: #FFF8E1;
+      border-left: 4px solid #FFA000;
+      padding: 10px 14px;
+      margin: 14px 0;
+      font-size: 10.5pt;
+      page-break-inside: avoid;
+    }
+
+    .notice-info {
+      background-color: #E8EAF6;
+      border-left: 4px solid #1A2B5E;
+      padding: 10px 14px;
+      margin: 14px 0;
+      font-size: 10.5pt;
+      page-break-inside: avoid;
+    }
+
+    /* ===== STEP BOX ===== */
+    .step-box {
+      border: 1px solid #C9D0E0;
+      border-radius: 4px;
+      margin: 14px 0;
+      page-break-inside: avoid;
+    }
+
+    .step-header {
+      background-color: #1A2B5E;
+      color: #fff;
+      padding: 7px 14px;
+      font-weight: bold;
+      font-size: 10.5pt;
+    }
+
+    .step-body {
+      padding: 10px 14px;
+      font-size: 11pt;
+    }
+
+    .step-body pre {
+      margin: 8px 0 0 0;
+    }
+
+    /* ===== PAGE BREAK ===== */
+    .page-break {
+      page-break-before: always;
+    }
+
+    /* ===== FOOTER NOTE ===== */
+    .doc-footer {
+      margin-top: 40px;
+      padding-top: 10px;
+      border-top: 1px solid #C9D0E0;
+      font-size: 9pt;
+      color: #888;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- COVER PAGE                                                    -->
+<!-- ============================================================ -->
+<div class="cover-page">
+  <p style="font-size:12pt; color:#888; margin-bottom:40px; letter-spacing:2px; text-transform:uppercase;">Mobile Application</p>
+  <p class="cover-title">Simbahan</p>
+  <p class="cover-subtitle">Deployment &amp; Publishing Guide</p>
+  <hr class="cover-divider">
+  <p style="font-size:11pt; color:#4A4A6A; font-style:italic;">"Your Parish, In Your Pocket"</p>
+
+  <div class="cover-meta">
+    <table>
+      <tr><td>Project Name</td><td>Simbahan</td></tr>
+      <tr><td>Technology</td><td>React Native with Expo</td></tr>
+      <tr><td>Android Package</td><td>com.simbahan.app</td></tr>
+      <tr><td>iOS Bundle ID</td><td>com.simbahan.app</td></tr>
+      <tr><td>App Version</td><td>1.0.0</td></tr>
+      <tr><td>Document Version</td><td>1.0</td></tr>
+      <tr><td>Date Prepared</td><td>[Date]</td></tr>
+      <tr><td>Prepared By</td><td>[Author Name]</td></tr>
+      <tr><td>Landing Page</td><td>[https://www.simbahan.app]</td></tr>
+    </table>
+  </div>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 1: STORE REQUIREMENTS                                -->
+<!-- ============================================================ -->
+<h1>Section 1: Store Requirements</h1>
+
+<h2>1.1 Platform Comparison</h2>
+<p>The following table outlines the key requirements, costs, and processes for publishing on each platform.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:30%">Requirement</th>
+      <th style="width:35%">Android — Google Play</th>
+      <th style="width:35%">iOS — Apple App Store</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Developer Account</td><td>Google Play Console</td><td>Apple Developer Program</td></tr>
+    <tr><td>Registration Fee</td><td>$25 USD — one-time payment</td><td>$99 USD — annual renewal</td></tr>
+    <tr><td>Account Portal</td><td>play.google.com/console</td><td>developer.apple.com</td></tr>
+    <tr><td>Build File Format</td><td>.aab (Android App Bundle)</td><td>.ipa (iOS App Archive)</td></tr>
+    <tr><td>Upload Method</td><td>Google Play Console (web browser)</td><td>Xcode Organizer or Transporter App</td></tr>
+    <tr><td>Internal Testing</td><td>Internal Test Track</td><td>TestFlight (internal group)</td></tr>
+    <tr><td>Beta Testing</td><td>Open Testing / Closed Testing Track</td><td>TestFlight (external testers)</td></tr>
+    <tr><td>Typical Review Time</td><td>1 to 3 business days</td><td>1 to 3 business days</td></tr>
+    <tr><td>Signing Method</td><td>Keystore file (.jks or .keystore)</td><td>Apple Distribution Certificate (.p12)</td></tr>
+    <tr><td>Provisioning</td><td>Not required</td><td>Distribution Provisioning Profile required</td></tr>
+    <tr><td>App Icon Requirement</td><td>512 x 512 px PNG, no transparency</td><td>1024 x 1024 px PNG, no transparency, no rounded corners</td></tr>
+    <tr><td>Feature Graphic</td><td>1024 x 500 px — required for store listing</td><td>Not applicable</td></tr>
+    <tr><td>Minimum OS Version</td><td>Android 5.0 (API Level 21)</td><td>iOS 13.0 or later</td></tr>
+    <tr><td>Privacy Policy</td><td>Mandatory — must be a live URL</td><td>Mandatory — must be a live URL</td></tr>
+  </tbody>
+</table>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 2: COMMON REQUIREMENTS                               -->
+<!-- ============================================================ -->
+<div class="page-break"></div>
+<h1>Section 2: Common Requirements</h1>
+
+<h2>2.1 Assets and Metadata Required for Both Platforms</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:28%">Requirement</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>App Name</td><td>Maximum 30 characters. Must be unique within the store. For this project: <strong>Simbahan</strong></td></tr>
+    <tr><td>Short Description</td><td>Maximum 80 characters. Used on Google Play only. Example: "Your parish, in your pocket."</td></tr>
+    <tr><td>Full Description</td><td>Maximum 4,000 characters. Describe features, benefits, and target users clearly.</td></tr>
+    <tr><td>App Icon</td><td>1024 x 1024 px, PNG format, no transparency, no rounded corners applied in the asset. The platform applies rounding automatically.</td></tr>
+    <tr><td>Screenshots</td><td>Minimum 2, maximum 8 per device type. Must accurately represent the app's current content and functionality.</td></tr>
+    <tr><td>Category</td><td>Select the most accurate primary category. Suggested: <strong>Lifestyle</strong> or <strong>Reference</strong></td></tr>
+    <tr><td>Content Rating</td><td>Each platform requires completion of a content rating questionnaire before publishing.</td></tr>
+    <tr><td>Privacy Policy</td><td>Mandatory for all apps. Must be hosted on a publicly accessible, live URL. Cannot be a PDF link.</td></tr>
+    <tr><td>Backend APIs</td><td>All API endpoints and data sources must be live and fully operational before submitting for review. Localhost or staging URLs will cause rejection.</td></tr>
+    <tr><td>Permissions</td><td>Every permission declared in the app (camera, notifications, location, etc.) must be justified in the store listing and in the privacy policy.</td></tr>
+    <tr><td>Support Email</td><td>A valid, monitored support contact email is required on both platforms.</td></tr>
+    <tr><td>Target Audience</td><td>Must specify age group. Apps targeting audiences under 13 require compliance with COPPA and GDPR-K.</td></tr>
+  </tbody>
+</table>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 3: BUILD FILES AND SIGNING COMPARISON                -->
+<!-- ============================================================ -->
+<h1>Section 3: Build Files and Signing</h1>
+
+<h2>3.1 Comparison Table</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:28%">Item</th>
+      <th style="width:36%">Android</th>
+      <th style="width:36%">iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Build Output Format</td><td>.aab (Android App Bundle)</td><td>.ipa (iOS App Archive)</td></tr>
+    <tr><td>Signing File</td><td>Keystore file (.jks or .keystore)</td><td>Apple Distribution Certificate (.p12)</td></tr>
+    <tr><td>Signing Identity</td><td>Key Alias within the Keystore file</td><td>Certificate paired with a Provisioning Profile</td></tr>
+    <tr><td>Build Tool</td><td>Gradle (command line or Android Studio)</td><td>Xcode (GUI or xcodebuild command line)</td></tr>
+    <tr><td>Release Command</td><td><code>./gradlew bundleRelease</code></td><td>Product &gt; Archive in Xcode, then Export</td></tr>
+    <tr><td>Output Location</td><td><code>android/app/build/outputs/bundle/release/</code></td><td>Exported via Xcode Organizer window</td></tr>
+    <tr><td>Key Management</td><td>Developer holds and secures the keystore locally. Must be backed up.</td><td>Apple manages keys via the Developer Portal. Certificate can be regenerated.</td></tr>
+    <tr><td>Consequence of Loss</td><td>Loss of the keystore file permanently prevents publishing updates to the existing app listing.</td><td>A new certificate can be generated through the Apple Developer Portal.</td></tr>
+  </tbody>
+</table>
+
+<div class="notice">
+  <strong>Critical Note:</strong> The Android keystore file must be stored securely and backed up in at least two separate locations. It cannot be recovered if lost. Without it, the existing Play Store listing cannot receive updates.
+</div>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 4: ANDROID SIGNING                                   -->
+<!-- ============================================================ -->
+<div class="page-break"></div>
+<h1>Section 4: Android Signing — Key Components</h1>
+
+<h2>4.1 Keystore Components Explained</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:28%">Component</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Keystore File (.jks)</td>
+      <td>A binary file that stores one or more cryptographic key entries. This file signs the application and proves the identity of the publisher. Must be kept in a secure, backed-up location. File for this project: <code>simbahan-release.jks</code></td>
+    </tr>
+    <tr>
+      <td>Key Alias</td>
+      <td>A unique string identifier for the specific key entry inside the keystore. A single keystore file can contain multiple aliases. Example: <code>simbahan-key</code></td>
+    </tr>
+    <tr>
+      <td>Keystore Password</td>
+      <td>The password that protects access to the entire keystore file. Required every time the file is used to sign a build.</td>
+    </tr>
+    <tr>
+      <td>Key Password</td>
+      <td>A separate password that protects the specific key entry identified by the alias. May be the same as the keystore password but is stored and managed independently.</td>
+    </tr>
+    <tr>
+      <td>Validity Period</td>
+      <td>Google Play requires the signing certificate to remain valid past October 22, 2033. Recommended: set validity to 10,000 days (approximately 27 years) when generating the keystore.</td>
+    </tr>
+    <tr>
+      <td>SHA-1 Fingerprint</td>
+      <td>A hash of the certificate, required to register the app with Google APIs such as Firebase, Google Maps, and OAuth. Generated from the keystore using the <code>keytool</code> command.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>4.2 Retrieving the SHA-1 Fingerprint</h2>
+<p>Run the following command, replacing the values with your actual keystore details:</p>
+<pre>keytool -list -v \
+  -keystore android/app/simbahan-release.jks \
+  -alias simbahan-key</pre>
+
+<p>The output will include the SHA-1, SHA-256, and MD5 fingerprints.</p>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 5: STEPS TO GENERATE .aab                           -->
+<!-- ============================================================ -->
+<h1>Section 5: Steps to Generate a Release .aab File</h1>
+
+<p>Follow the steps below in sequence. All commands are run from the terminal at the project root unless otherwise stated.</p>
+
+<!-- Step 1 -->
+<div class="step-box">
+  <div class="step-header">Step 1 — Generate the Keystore File</div>
+  <div class="step-body">
+    <p>Run the following command from your terminal. Replace all placeholder values with your project-specific information. You will be prompted to enter a keystore password, key password, and owner information.</p>
+    <pre>keytool -genkeypair -v \
+  -keystore android/app/simbahan-release.jks \
+  -alias simbahan-key \
+  -keyalg RSA \
+  -keysize 2048 \
+  -validity 10000</pre>
+    <p>When prompted, provide:</p>
+    <ul>
+      <li>First and last name (or organization name)</li>
+      <li>Organizational unit</li>
+      <li>Organization</li>
+      <li>City, State, Country code (e.g., PH for Philippines)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Step 2 -->
+<div class="step-box">
+  <div class="step-header">Step 2 — Place the Keystore File</div>
+  <div class="step-body">
+    <p>Move or confirm the generated keystore file is located at:</p>
+    <pre>android/app/simbahan-release.jks</pre>
+    <p>Do not place the keystore outside the <code>android/app/</code> directory, as the build script references it relative to this path.</p>
+  </div>
+</div>
+
+<!-- Step 3 -->
+<div class="step-box">
+  <div class="step-header">Step 3 — Configure gradle.properties</div>
+  <div class="step-body">
+    <p>Open the file <code>android/gradle.properties</code> and add the following lines at the bottom. Replace the values with your actual credentials.</p>
+    <pre>MYAPP_UPLOAD_STORE_FILE=simbahan-release.jks
+MYAPP_UPLOAD_KEY_ALIAS=simbahan-key
+MYAPP_UPLOAD_STORE_PASSWORD=your_keystore_password
+MYAPP_UPLOAD_KEY_PASSWORD=your_key_password</pre>
+    <div class="notice">
+      <strong>Security Note:</strong> Do not commit <code>gradle.properties</code> to any public repository if it contains credentials. Add it to <code>.gitignore</code> or use environment variables in a CI/CD pipeline.
+    </div>
+  </div>
+</div>
+
+<!-- Step 4 -->
+<div class="step-box">
+  <div class="step-header">Step 4 — Update android/app/build.gradle</div>
+  <div class="step-body">
+    <p>Open <code>android/app/build.gradle</code>. Inside the <code>android { }</code> block, add or update the <code>signingConfigs</code> and <code>buildTypes</code> sections as shown below.</p>
+    <pre>android {
+    signingConfigs {
+        release {
+            storeFile file(MYAPP_UPLOAD_STORE_FILE)
+            storePassword MYAPP_UPLOAD_STORE_PASSWORD
+            keyAlias MYAPP_UPLOAD_KEY_ALIAS
+            keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile("proguard-android.txt"),
+                          "proguard-rules.pro"
+        }
+    }
+}</pre>
+  </div>
+</div>
+
+<!-- Step 5 -->
+<div class="step-box">
+  <div class="step-header">Step 5 — Clean the Project</div>
+  <div class="step-body">
+    <p>Navigate into the <code>android</code> directory and run the Gradle clean task to remove any previous build artifacts.</p>
+    <pre>cd android
+./gradlew clean</pre>
+  </div>
+</div>
+
+<!-- Step 6 -->
+<div class="step-box">
+  <div class="step-header">Step 6 — Build the Release Bundle</div>
+  <div class="step-body">
+    <p>While still inside the <code>android</code> directory, run the release bundle task.</p>
+    <pre>./gradlew bundleRelease</pre>
+    <p>The build process will compile the JavaScript bundle, apply Hermes compilation, sign the output, and produce the final <code>.aab</code> file. This may take several minutes on first run.</p>
+  </div>
+</div>
+
+<!-- Step 7 -->
+<div class="step-box">
+  <div class="step-header">Step 7 — Locate the Output File</div>
+  <div class="step-body">
+    <p>After a successful build, the signed <code>.aab</code> file is located at:</p>
+    <pre>android/app/build/outputs/bundle/release/app-release.aab</pre>
+    <p>This file is ready for upload to Google Play Console under any of the following tracks:</p>
+    <ul>
+      <li>Internal Testing</li>
+      <li>Closed Testing (Alpha)</li>
+      <li>Open Testing (Beta)</li>
+      <li>Production</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 6: PRIVACY POLICY                                    -->
+<!-- ============================================================ -->
+<div class="page-break"></div>
+<h1>Section 6: Privacy Policy Requirements</h1>
+
+<p>A Privacy Policy is mandatory on both Google Play and the Apple App Store. The following table details all requirements.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:28%">Requirement</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Hosting</td><td>Must be hosted on a publicly accessible, live URL. A PDF link is not accepted.</td></tr>
+    <tr><td>Format</td><td>Standard web page (HTML). Must be accessible without login.</td></tr>
+    <tr><td>Data Collection Disclosure</td><td>Must describe what data is collected (name, email, device data, usage data, etc.), how it is used, and how long it is retained.</td></tr>
+    <tr><td>Third-Party Services</td><td>Must disclose all third-party SDKs and services used (e.g., Firebase, Google Analytics, push notification services).</td></tr>
+    <tr><td>Permissions Disclosure</td><td>Must explain the purpose of every permission requested by the app: camera, microphone, location, notifications, and any other sensitive permissions.</td></tr>
+    <tr><td>User Rights</td><td>Must describe how users can request access to, correction of, or deletion of their data.</td></tr>
+    <tr><td>Contact Information</td><td>Must include a valid email address for privacy-related inquiries.</td></tr>
+    <tr><td>GDPR / COPPA</td><td>If the app is available in the European Union or to users under 13, additional GDPR and COPPA compliance language is required.</td></tr>
+    <tr><td>Updates</td><td>Must be updated whenever the app's data collection or usage practices change.</td></tr>
+  </tbody>
+</table>
+
+<div class="notice-info">
+  <strong>Recommended Tools:</strong> Use App Privacy Policy Generator (app-privacy-policy-generator.firebaseapp.com) or Termly (termly.io) to generate a compliant starting document. Always review and customise the output to match actual app behaviour.
+</div>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 7: SCREENSHOT SPECIFICATIONS                         -->
+<!-- ============================================================ -->
+<h1>Section 7: Screenshot Specifications</h1>
+
+<h2>7.1 Google Play — Required Dimensions</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Device Type</th>
+      <th>Minimum Dimensions</th>
+      <th>Format</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Phone (Portrait)</td><td>1080 x 1920 px</td><td>PNG or JPEG</td><td>Required. Minimum 2, maximum 8.</td></tr>
+    <tr><td>7-inch Tablet</td><td>1200 x 1920 px</td><td>PNG or JPEG</td><td>Optional but recommended.</td></tr>
+    <tr><td>10-inch Tablet</td><td>1920 x 1200 px</td><td>PNG or JPEG</td><td>Optional but recommended.</td></tr>
+    <tr><td>Feature Graphic</td><td>1024 x 500 px</td><td>PNG or JPEG</td><td>Required for store listing display.</td></tr>
+  </tbody>
+</table>
+
+<h2>7.2 Apple App Store — Required Dimensions</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Device Type</th>
+      <th>Dimensions</th>
+      <th>Format</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>iPhone 6.7 inch (Required)</td><td>1290 x 2796 px</td><td>PNG or JPEG</td><td>Required. Minimum 2, maximum 10.</td></tr>
+    <tr><td>iPhone 6.5 inch</td><td>1242 x 2688 px</td><td>PNG or JPEG</td><td>Required if not providing 6.7 inch.</td></tr>
+    <tr><td>iPhone 5.5 inch</td><td>1242 x 2208 px</td><td>PNG or JPEG</td><td>Required for older device support.</td></tr>
+    <tr><td>iPad Pro 12.9 inch</td><td>2048 x 2732 px</td><td>PNG or JPEG</td><td>Required if app supports iPad.</td></tr>
+    <tr><td>iPad Pro 11 inch</td><td>1668 x 2388 px</td><td>PNG or JPEG</td><td>Optional but recommended.</td></tr>
+  </tbody>
+</table>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 8: VERSION COMPATIBILITY                             -->
+<!-- ============================================================ -->
+<div class="page-break"></div>
+<h1>Section 8: Build Environment — Version Reference</h1>
+
+<p>The following table documents the verified compatible build environment for the Simbahan project.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:35%">Component</th>
+      <th>Version</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Expo SDK</td><td>51.0.x</td><td>Managed and bare workflow supported</td></tr>
+    <tr><td>React Native</td><td>0.74.1</td><td>Bundled with Expo SDK 51</td></tr>
+    <tr><td>Node.js</td><td>20.x LTS</td><td>Minimum required for Expo CLI</td></tr>
+    <tr><td>Gradle</td><td>8.8</td><td>Configured in gradle-wrapper.properties</td></tr>
+    <tr><td>Android Gradle Plugin (AGP)</td><td>8.3.2</td><td>Pinned in android/build.gradle</td></tr>
+    <tr><td>Kotlin</td><td>1.9.23</td><td>Set in android/build.gradle ext block</td></tr>
+    <tr><td>Compile SDK</td><td>35</td><td>android/build.gradle ext block</td></tr>
+    <tr><td>Target SDK</td><td>35</td><td>android/build.gradle ext block</td></tr>
+    <tr><td>Minimum SDK</td><td>23 (Android 6.0)</td><td>android/build.gradle ext block</td></tr>
+    <tr><td>NDK Version</td><td>26.1.10909125</td><td>android/build.gradle ext block</td></tr>
+    <tr><td>Build Tools</td><td>34.0.0</td><td>android/build.gradle ext block</td></tr>
+    <tr><td>Java (JDK)</td><td>17 LTS</td><td>Required by AGP 8.x</td></tr>
+  </tbody>
+</table>
+
+<div class="notice">
+  <strong>Important:</strong> Running <code>npx expo prebuild --clean</code> regenerates the entire <code>android/</code> folder. After any prebuild, re-confirm that AGP is pinned to 8.3.2 in <code>android/build.gradle</code> and that <code>expo-constants</code> resolves to version 16.x (not 55.x).
+</div>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 9: CHECKLIST BEFORE SUBMISSION                       -->
+<!-- ============================================================ -->
+<h1>Section 9: Pre-Submission Checklist</h1>
+
+<h2>9.1 Android — Google Play</h2>
+<table>
+  <thead>
+    <tr><th style="width:5%">No.</th><th>Item</th><th style="width:15%">Status</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>Google Play Console account is active ($25 one-time fee paid)</td><td>[ ]</td></tr>
+    <tr><td>2</td><td>Release .aab file generated and signed with the release keystore</td><td>[ ]</td></tr>
+    <tr><td>3</td><td>App icon prepared at 512 x 512 px PNG, no transparency</td><td>[ ]</td></tr>
+    <tr><td>4</td><td>Feature graphic prepared at 1024 x 500 px</td><td>[ ]</td></tr>
+    <tr><td>5</td><td>Minimum 2 phone screenshots prepared</td><td>[ ]</td></tr>
+    <tr><td>6</td><td>Short description written (max 80 characters)</td><td>[ ]</td></tr>
+    <tr><td>7</td><td>Full description written (max 4,000 characters)</td><td>[ ]</td></tr>
+    <tr><td>8</td><td>Privacy Policy URL is live and accessible</td><td>[ ]</td></tr>
+    <tr><td>9</td><td>Content rating questionnaire completed</td><td>[ ]</td></tr>
+    <tr><td>10</td><td>Target audience and age group declared</td><td>[ ]</td></tr>
+    <tr><td>11</td><td>All backend APIs are live and operational</td><td>[ ]</td></tr>
+    <tr><td>12</td><td>Keystore file backed up in a secure location</td><td>[ ]</td></tr>
+  </tbody>
+</table>
+
+<h2>9.2 iOS — Apple App Store</h2>
+<table>
+  <thead>
+    <tr><th style="width:5%">No.</th><th>Item</th><th style="width:15%">Status</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>Apple Developer Program account is active ($99/year paid)</td><td>[ ]</td></tr>
+    <tr><td>2</td><td>App registered in App Store Connect with correct Bundle ID</td><td>[ ]</td></tr>
+    <tr><td>3</td><td>Distribution Certificate created in Apple Developer Portal</td><td>[ ]</td></tr>
+    <tr><td>4</td><td>Distribution Provisioning Profile created and downloaded</td><td>[ ]</td></tr>
+    <tr><td>5</td><td>.ipa file built and uploaded via Xcode or Transporter</td><td>[ ]</td></tr>
+    <tr><td>6</td><td>App icon prepared at 1024 x 1024 px PNG, no transparency</td><td>[ ]</td></tr>
+    <tr><td>7</td><td>iPhone 6.7 inch screenshots prepared (minimum 2)</td><td>[ ]</td></tr>
+    <tr><td>8</td><td>iPad screenshots prepared if app supports iPad</td><td>[ ]</td></tr>
+    <tr><td>9</td><td>Privacy Policy URL is live and accessible</td><td>[ ]</td></tr>
+    <tr><td>10</td><td>App description and keywords completed in App Store Connect</td><td>[ ]</td></tr>
+    <tr><td>11</td><td>Age rating questionnaire completed</td><td>[ ]</td></tr>
+    <tr><td>12</td><td>Export Compliance declaration completed</td><td>[ ]</td></tr>
+  </tbody>
+</table>
+
+
+<!-- ============================================================ -->
+<!-- DOCUMENT FOOTER                                              -->
+<!-- ============================================================ -->
+<div class="doc-footer">
+  <p>Simbahan — Mobile Application Deployment Guide &nbsp;|&nbsp; Version 1.0 &nbsp;|&nbsp; Confidential</p>
+  <p>This document is intended for internal use and authorised distribution only.</p>
+</div>
+
+</body>
+</html>

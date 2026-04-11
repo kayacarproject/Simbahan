@@ -1,0 +1,90 @@
+[
+  {
+    "id": "ann_001",
+    "title": "Sunday Mass Schedule Update",
+    "category": "Mass",
+    "date": "2025-01-05",
+    "description": "Sunday masses are held at 6:00 AM, 8:00 AM, 10:00 AM, 12:00 NN, and 6:00 PM. All parishioners are welcome.",
+    "image": "https://picsum.photos/id/1018/600/300",
+    "isPinned": true,
+    "isRead": false,
+    "author": "Parish Office"
+  },
+  {
+    "id": "ann_002",
+    "title": "Simbang Gabi 2025",
+    "category": "Event",
+    "date": "2025-12-16",
+    "description": "Join us for the traditional 9-day novena masses starting December 16. Mass at 4:30 AM daily.",
+    "image": "https://picsum.photos/id/1015/600/300",
+    "isPinned": true,
+    "isRead": false,
+    "author": "Fr. Jose Maria Santos"
+  },
+  {
+    "id": "ann_003",
+    "title": "Parish Youth Ministry Monthly Meeting",
+    "category": "Youth",
+    "date": "2025-01-12",
+    "description": "Monthly meeting for all youth ministry members. Venue: Parish Hall, 3:00 PM.",
+    "image": "https://picsum.photos/id/1016/600/300",
+    "isPinned": false,
+    "isRead": false,
+    "author": "Youth Ministry"
+  },
+  {
+    "id": "ann_004",
+    "title": "Baptism Schedule — January 2025",
+    "category": "Sacrament",
+    "date": "2025-01-12",
+    "description": "Baptisms are held every second Sunday of the month at 1:00 PM. Register at the parish office.",
+    "image": "https://picsum.photos/id/1020/600/300",
+    "isPinned": false,
+    "isRead": false,
+    "author": "Parish Office"
+  },
+  {
+    "id": "ann_005",
+    "title": "Lenten Recollection 2025",
+    "category": "Event",
+    "date": "2025-03-08",
+    "description": "A day of prayer and reflection for the Lenten season. Open to all parishioners. 8:00 AM – 5:00 PM.",
+    "image": "https://picsum.photos/id/1021/600/300",
+    "isPinned": false,
+    "isRead": false,
+    "author": "Fr. Miguel dela Cruz"
+  },
+  {
+    "id": "ann_006",
+    "title": "Choir Auditions Open",
+    "category": "Ministry",
+    "date": "2025-01-18",
+    "description": "The parish choir is looking for new members. Auditions every Saturday at 3:00 PM in the church.",
+    "image": "https://picsum.photos/id/1022/600/300",
+    "isPinned": false,
+    "isRead": false,
+    "author": "Choir Ministry"
+  },
+  {
+    "id": "ann_007",
+    "title": "Couples for Christ Household Meeting",
+    "category": "Ministry",
+    "date": "2025-01-19",
+    "description": "All CFC household leaders are invited to the quarterly planning meeting at the Parish Hall.",
+    "image": "https://picsum.photos/id/1023/600/300",
+    "isPinned": false,
+    "isRead": false,
+    "author": "Couples for Christ"
+  },
+  {
+    "id": "ann_008",
+    "title": "Parish Fiesta — March 19",
+    "category": "Event",
+    "date": "2025-03-19",
+    "description": "Celebrate the feast of Saint Joseph with a solemn High Mass at 9:00 AM followed by a parish lunch.",
+    "image": "https://picsum.photos/id/1024/600/300",
+    "isPinned": true,
+    "isRead": false,
+    "author": "Parish Office"
+  }
+]

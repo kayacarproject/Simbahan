@@ -1,0 +1,62 @@
+[
+  {
+    "id": "don_001",
+    "memberId": "mem_001",
+    "memberName": "Maria Santos",
+    "amount": 500,
+    "currency": "PHP",
+    "category": "Sunday Collection",
+    "date": "2025-01-05",
+    "method": "cash",
+    "notes": "",
+    "isAnonymous": false
+  },
+  {
+    "id": "don_002",
+    "memberId": "mem_006",
+    "memberName": "Ramon Garcia",
+    "amount": 1000,
+    "currency": "PHP",
+    "category": "Building Fund",
+    "date": "2025-01-05",
+    "method": "cash",
+    "notes": "For church renovation",
+    "isAnonymous": false
+  },
+  {
+    "id": "don_003",
+    "memberId": "mem_010",
+    "memberName": "Andres Villanueva",
+    "amount": 2000,
+    "currency": "PHP",
+    "category": "Parish Fiesta",
+    "date": "2025-01-12",
+    "method": "gcash",
+    "notes": "Fiesta sponsorship",
+    "isAnonymous": false
+  },
+  {
+    "id": "don_004",
+    "memberId": "",
+    "memberName": "Anonymous",
+    "amount": 300,
+    "currency": "PHP",
+    "category": "Sunday Collection",
+    "date": "2025-01-12",
+    "method": "cash",
+    "notes": "",
+    "isAnonymous": true
+  },
+  {
+    "id": "don_005",
+    "memberId": "mem_012",
+    "memberName": "Benjamin Mendoza",
+    "amount": 5000,
+    "currency": "PHP",
+    "category": "Building Fund",
+    "date": "2025-01-19",
+    "method": "bank_transfer",
+    "notes": "Monthly pledge",
+    "isAnonymous": false
+  }
+]

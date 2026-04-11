@@ -1,0 +1,62 @@
+[
+  {
+    "id": "fam_001",
+    "familyName": "Santos Family",
+    "headId": "mem_002",
+    "memberIds": ["mem_001", "mem_002"],
+    "barangay": "Barangay Holy Spirit",
+    "address": "12 Sampaguita St., Barangay Holy Spirit, Quezon City",
+    "weddingDate": "2008-02-14",
+    "isActive": true
+  },
+  {
+    "id": "fam_002",
+    "familyName": "Reyes Family",
+    "headId": "mem_004",
+    "memberIds": ["mem_003", "mem_004"],
+    "barangay": "Barangay Batasan Hills",
+    "address": "45 Rosal Ave., Barangay Batasan Hills, Quezon City",
+    "weddingDate": "2013-06-15",
+    "isActive": true
+  },
+  {
+    "id": "fam_003",
+    "familyName": "Garcia Family",
+    "headId": "mem_006",
+    "memberIds": ["mem_005", "mem_006"],
+    "barangay": "Barangay Commonwealth",
+    "address": "78 Ilang-Ilang St., Barangay Commonwealth, Quezon City",
+    "weddingDate": "2001-12-08",
+    "isActive": true
+  },
+  {
+    "id": "fam_004",
+    "familyName": "Dela Cruz Family",
+    "headId": "mem_008",
+    "memberIds": ["mem_007", "mem_008"],
+    "barangay": "Barangay Payatas",
+    "address": "23 Gumamela Lane, Barangay Payatas, Quezon City",
+    "weddingDate": "1995-04-20",
+    "isActive": true
+  },
+  {
+    "id": "fam_005",
+    "familyName": "Villanueva Family",
+    "headId": "mem_010",
+    "memberIds": ["mem_009", "mem_010"],
+    "barangay": "Barangay Fairview",
+    "address": "56 Orchid St., Barangay Fairview, Quezon City",
+    "weddingDate": "2005-09-08",
+    "isActive": true
+  },
+  {
+    "id": "fam_006",
+    "familyName": "Mendoza Family",
+    "headId": "mem_012",
+    "memberIds": ["mem_011", "mem_012"],
+    "barangay": "Barangay Novaliches",
+    "address": "89 Jasmine Rd., Barangay Novaliches, Quezon City",
+    "weddingDate": "1990-07-16",
+    "isActive": true
+  }
+]

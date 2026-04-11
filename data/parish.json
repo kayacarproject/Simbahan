@@ -1,0 +1,14 @@
+{
+  "name": "Saint Joseph Parish",
+  "diocese": "Archdiocese of Manila",
+  "address": "123 Parish Road, Quezon City, Metro Manila",
+  "phone": "+63 2 8123 4567",
+  "email": "info@stjosephparish.ph",
+  "pastor": "Fr. Jose Maria Santos",
+  "officeHours": "Monday–Friday, 8:00 AM – 5:00 PM",
+  "image": "https://picsum.photos/id/1060/400/200",
+  "socialLinks": {
+    "facebook": "https://facebook.com/stjosephparish",
+    "youtube": "https://youtube.com/stjosephparish"
+  }
+}

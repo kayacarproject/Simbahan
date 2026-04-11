@@ -1,0 +1,49 @@
+[
+  {
+    "id": "sac_001",
+    "type": "baptism",
+    "memberId": "mem_003",
+    "memberName": "Ana Reyes",
+    "childName": "Sofia Reyes",
+    "childBirthDate": "2024-11-20",
+    "preferredDate": "2025-01-12",
+    "status": "approved",
+    "notes": "First child. Godparents confirmed.",
+    "submittedAt": "2024-12-15T10:30:00.000Z",
+    "updatedAt": "2024-12-20T14:00:00.000Z"
+  },
+  {
+    "id": "sac_002",
+    "type": "marriage",
+    "memberId": "mem_007",
+    "memberName": "Rosario Dela Cruz",
+    "spouseName": "Marco Bautista",
+    "preferredDate": "2025-06-14",
+    "status": "pending",
+    "notes": "Couple has completed pre-Cana seminar.",
+    "submittedAt": "2025-01-05T09:00:00.000Z",
+    "updatedAt": "2025-01-05T09:00:00.000Z"
+  },
+  {
+    "id": "sac_003",
+    "type": "confirmation",
+    "memberId": "mem_007",
+    "memberName": "Rosario Dela Cruz",
+    "preferredDate": "2025-04-26",
+    "status": "pending",
+    "notes": "Enrolled in confirmation class.",
+    "submittedAt": "2025-01-10T11:00:00.000Z",
+    "updatedAt": "2025-01-10T11:00:00.000Z"
+  },
+  {
+    "id": "sac_004",
+    "type": "anointing",
+    "memberId": "mem_011",
+    "memberName": "Concepcion Mendoza",
+    "preferredDate": "2025-01-15",
+    "status": "approved",
+    "notes": "Home visit requested. Patient is elderly.",
+    "submittedAt": "2025-01-12T08:00:00.000Z",
+    "updatedAt": "2025-01-13T10:00:00.000Z"
+  }
+]

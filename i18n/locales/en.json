@@ -1,0 +1,183 @@
+{
+  "countrySelect": {
+    "title": "Select Your Country",
+    "subtitle": "Choose the country where your parish is located. You can change this later in Settings.",
+    "continue": "Continue",
+    "countries": {
+      "PH": "Philippines",
+      "IN": "India"
+    }
+  },
+  "languageSelect": {
+    "title": "Choose Your Language",
+    "subtitle": "Select the language you prefer for the app.",
+    "continue": "Continue",
+    "languages": {
+      "en": "English",
+      "fil": "Filipino",
+      "hi": "Hindi",
+      "te": "Telugu",
+      "ta": "Tamil"
+    }
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "close": "Close",
+    "confirm": "Confirm",
+    "loading": "Loading…",
+    "error": "Something went wrong.",
+    "retry": "Retry",
+    "or": "or",
+    "yes": "Yes",
+    "no": "No",
+    "done": "Done",
+    "next": "Next",
+    "skip": "Skip",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View All",
+    "noData": "Nothing here yet."
+  },
+  "nav": {
+    "home": "Home",
+    "schedule": "Schedule",
+    "readings": "Readings",
+    "community": "Community",
+    "donate": "Donate"
+  },
+  "auth": {
+    "loginTitle": "Welcome Back",
+    "loginSubtitle": "Sign in to your parish account",
+    "registerTitle": "Create Account",
+    "email": "Email Address",
+    "password": "Password",
+    "login": "Sign In",
+    "register": "Create Account",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "signUp": "Sign Up",
+    "signIn": "Sign In",
+    "forgotPassword": "Forgot Password?",
+    "logout": "Sign Out",
+    "logoutConfirm": "Are you sure you want to sign out?"
+  },
+  "home": {
+    "greeting": "Good morning",
+    "todayReadings": "Today's Readings",
+    "massSchedule": "Mass Schedule",
+    "announcements": "Announcements",
+    "upcomingEvents": "Upcoming Events",
+    "noAnnouncements": "No announcements at this time.",
+    "noEvents": "No upcoming events.",
+    "viewAll": "View All"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Appearance",
+    "notifications": "Notifications",
+    "privacy": "Privacy",
+    "country": "Country",
+    "about": "About",
+    "version": "App Version",
+    "textSize": "Text Size",
+    "changeCountry": "Change Country",
+    "changeLanguage": "Change Language",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "changesSaved": "Settings saved successfully."
+  },
+  "profile": {
+    "title": "My Profile",
+    "edit": "Edit Profile",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "barangay": "Barangay / Area",
+    "birthday": "Birthday",
+    "civilStatus": "Civil Status",
+    "saveChanges": "Save Changes"
+  },
+  "announcements": {
+    "title": "Announcements",
+    "markRead": "Mark as Read",
+    "markAllRead": "Mark All as Read",
+    "unread": "Unread"
+  },
+  "events": {
+    "title": "Events",
+    "rsvp": "RSVP",
+    "attending": "Attending",
+    "notAttending": "Not Attending",
+    "details": "Event Details",
+    "location": "Location",
+    "date": "Date",
+    "time": "Time"
+  },
+  "readings": {
+    "title": "Daily Readings",
+    "firstReading": "First Reading",
+    "psalm": "Psalm",
+    "secondReading": "Second Reading",
+    "gospel": "Gospel",
+    "reflection": "Reflection",
+    "noReadings": "No readings available for today."
+  },
+  "massSchedule": {
+    "title": "Mass Schedule",
+    "sunday": "Sunday",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "daily": "Daily Mass",
+    "language": "Language",
+    "location": "Location"
+  },
+  "donations": {
+    "title": "Donations",
+    "give": "Give",
+    "amount": "Amount",
+    "fund": "Fund",
+    "history": "Donation History",
+    "thankYou": "Thank you for your generosity.",
+    "noHistory": "No donation history yet."
+  },
+  "community": {
+    "title": "Community",
+    "members": "Members",
+    "search": "Search members…",
+    "noMembers": "No members found.",
+    "family": "My Family"
+  },
+  "sacraments": {
+    "title": "Sacraments",
+    "request": "Request a Sacrament",
+    "baptism": "Baptism",
+    "confirmation": "Confirmation",
+    "marriage": "Marriage",
+    "anointing": "Anointing of the Sick",
+    "status": "Status",
+    "pending": "Pending",
+    "approved": "Approved",
+    "completed": "Completed"
+  },
+  "novenas": {
+    "title": "Novenas",
+    "rosary": "Holy Rosary",
+    "day": "Day",
+    "pray": "Pray",
+    "bookmark": "Bookmark",
+    "bookmarked": "Bookmarked"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markRead": "Mark as Read",
+    "empty": "You have no notifications."
+  }
+}

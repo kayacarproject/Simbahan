@@ -1,0 +1,65 @@
+[
+  {
+    "id": "lc_001",
+    "season": "christmas",
+    "name": "Christmas Season",
+    "startDate": "2024-12-25",
+    "endDate": "2025-01-12",
+    "color": "#FFFFFF",
+    "description": "The Christmas season celebrates the birth of Jesus Christ."
+  },
+  {
+    "id": "lc_002",
+    "season": "ordinary",
+    "name": "Ordinary Time (I)",
+    "startDate": "2025-01-13",
+    "endDate": "2025-03-04",
+    "color": "#2D6A4F",
+    "description": "Ordinary Time is a period of growth and reflection."
+  },
+  {
+    "id": "lc_003",
+    "season": "lent",
+    "name": "Lenten Season",
+    "startDate": "2025-03-05",
+    "endDate": "2025-04-17",
+    "color": "#6B2D8B",
+    "description": "Lent is a 40-day season of prayer, fasting, and almsgiving."
+  },
+  {
+    "id": "lc_004",
+    "season": "easter",
+    "name": "Easter Season",
+    "startDate": "2025-04-20",
+    "endDate": "2025-06-08",
+    "color": "#FFFFFF",
+    "description": "The Easter season celebrates the Resurrection of Jesus Christ."
+  },
+  {
+    "id": "lc_005",
+    "season": "pentecost",
+    "name": "Pentecost Sunday",
+    "startDate": "2025-06-08",
+    "endDate": "2025-06-08",
+    "color": "#CC0000",
+    "description": "Pentecost celebrates the descent of the Holy Spirit upon the Apostles."
+  },
+  {
+    "id": "lc_006",
+    "season": "ordinary",
+    "name": "Ordinary Time (II)",
+    "startDate": "2025-06-09",
+    "endDate": "2025-11-29",
+    "color": "#2D6A4F",
+    "description": "The longer period of Ordinary Time for growth in faith."
+  },
+  {
+    "id": "lc_007",
+    "season": "advent",
+    "name": "Advent Season",
+    "startDate": "2025-11-30",
+    "endDate": "2025-12-24",
+    "color": "#4B0082",
+    "description": "Advent is a season of joyful anticipation and preparation for Christmas."
+  }
+]

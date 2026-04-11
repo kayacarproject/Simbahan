@@ -1,0 +1,63 @@
+[
+  {
+    "id": "nov_001",
+    "title": "Novena to Saint Joseph",
+    "patron": "Saint Joseph",
+    "feastDate": "March 19",
+    "duration": 9,
+    "description": "A nine-day prayer to Saint Joseph, patron of the Universal Church and workers.",
+    "image": "https://picsum.photos/id/1040/400/300",
+    "prayers": [
+      {
+        "day": 1,
+        "title": "Day 1 — Joseph the Just Man",
+        "prayer": "O Saint Joseph, whose protection is so great, so strong, so prompt before the throne of God, I place in you all my interests and desires. O Saint Joseph, do assist me by your powerful intercession and obtain for me from your Divine Son all spiritual blessings through Jesus Christ, Our Lord; so that having engaged here below your heavenly power, I may offer my thanksgiving and homage to the most loving of Fathers. Amen."
+      },
+      {
+        "day": 2,
+        "title": "Day 2 — Joseph the Husband of Mary",
+        "prayer": "O Blessed Saint Joseph, tenderhearted father, faithful guardian of Jesus, chaste spouse of the Mother of God, I pray and beseech you to offer to God the Father His divine Son, bathed in blood on the cross for sinners, and through the thrice-holy Name of Jesus, obtain for us of the eternal Father the favor we implore. Amen."
+      },
+      {
+        "day": 3,
+        "title": "Day 3 — Joseph the Foster Father",
+        "prayer": "O Saint Joseph, I never weary contemplating you and Jesus asleep in your arms. I dare not approach while He reposes near your heart. Press Him in my name and kiss His fine head for me, and ask Him to return the kiss when I draw my dying breath. Amen."
+      }
+    ],
+    "isActive": true
+  },
+  {
+    "id": "nov_002",
+    "title": "Novena to Our Lady of Perpetual Help",
+    "patron": "Our Lady of Perpetual Help",
+    "feastDate": "June 27",
+    "duration": 9,
+    "description": "A nine-day novena to Our Lady of Perpetual Help, seeking her intercession.",
+    "image": "https://picsum.photos/id/1041/400/300",
+    "prayers": [
+      {
+        "day": 1,
+        "title": "Day 1 — Mother of Perpetual Help",
+        "prayer": "O Mother of Perpetual Help, thou art the dispenser of all the gifts which God grants to us miserable sinners; and for this end He has made thee so powerful, so rich, and so bountiful, in order that thou mayest help us in our misery. Thou art the advocate of the most wretched and abandoned sinners who have recourse to thee. Amen."
+      }
+    ],
+    "isActive": true
+  },
+  {
+    "id": "nov_003",
+    "title": "Simbang Gabi Novena",
+    "patron": "Blessed Virgin Mary",
+    "feastDate": "December 25",
+    "duration": 9,
+    "description": "The traditional Filipino nine-day dawn Mass novena before Christmas.",
+    "image": "https://picsum.photos/id/1042/400/300",
+    "prayers": [
+      {
+        "day": 1,
+        "title": "Day 1 — December 16",
+        "prayer": "Come, Lord Jesus. We await your coming with joyful hearts. As we gather in the early morning hours, fill us with the spirit of Advent — of hope, of peace, of joy, and of love. May our hearts be prepared to receive you. Amen."
+      }
+    ],
+    "isActive": true
+  }
+]
