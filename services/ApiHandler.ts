@@ -249,6 +249,7 @@ export const getPublicData = async (
     const res = await axios.post(url, body, {
       headers: {
         'Content-Type': 'application/json',
+        'x-api-key': Api.apiKey,
         ...extraHeaders,
       },
       timeout: Api.timeout,
