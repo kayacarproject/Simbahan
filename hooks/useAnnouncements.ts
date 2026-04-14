@@ -1,16 +1,26 @@
 import { useMemo } from 'react';
-import announcements from '../data/announcements.json';
+import { useData } from './useData';
+import staticData from '../data/announcements.json';
+
+type Announcement = (typeof staticData)[number];
 
 export function useAnnouncements(category?: string) {
-  return useMemo(
-    () =>
-      category && category !== 'All'
-        ? announcements.filter((a) => a.category === category)
-        : announcements,
-    [category]
-  );
+  const { data, loading, error } = useData<Announcement[]>('/announcements', staticData);
+
+  const filtered = useMemo(() => {
+    if (!data) return [];
+    return category && category !== 'All'
+      ? data.filter((a) => a.category === category)
+      : data;
+  }, [data, category]);
+
+  return { data: filtered, loading, error };
 }
 
 export function useAnnouncementById(id: string) {
-  return useMemo(() => announcements.find((a) => a.id === id), [id]);
+  const { data, loading, error } = useData<Announcement[]>('/announcements', staticData);
+
+  const item = useMemo(() => data?.find((a) => a.id === id) ?? null, [data, id]);
+
+  return { data: item, loading, error };
 }
