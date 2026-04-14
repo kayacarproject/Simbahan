@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
-import Api from './Api';
+import Api from './api';
 import { getToken } from './authService';
 
 // ── Shared headers ────────────────────────────────────────────────────────────
