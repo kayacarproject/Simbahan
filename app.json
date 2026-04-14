@@ -7,15 +7,12 @@
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "backgroundColor": "#FAFAF5",
-
     "icon": "./assets/images/icon.png",
-
     "splash": {
       "image": "./assets/images/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#1A2B5E"
     },
-
     "android": {
       "package": "com.simbahan.app",
       "adaptiveIcon": {
@@ -29,7 +26,6 @@
         "backgroundColor": "#1A2B5E"
       }
     },
-
     "ios": {
       "bundleIdentifier": "com.simbahan.app",
       "supportsTablet": true,
@@ -41,7 +37,6 @@
         "tabletImage": "./assets/images/splash-icon.png"
       }
     },
-
     "web": {
       "bundler": "metro",
       "output": "static",
@@ -52,7 +47,6 @@
       "themeColor": "#1A2B5E",
       "backgroundColor": "#FAFAF5"
     },
-
     "plugins": [
       "expo-router",
       "expo-font",
@@ -72,9 +66,9 @@
           "resizeMode": "contain",
           "backgroundColor": "#1A2B5E"
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
-
     "experiments": {
       "typedRoutes": true
     }

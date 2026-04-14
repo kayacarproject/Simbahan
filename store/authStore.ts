@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import membersData from "../data/members.json";
+import { apiLogout } from "../services/authService";
 
 type Member = (typeof membersData)[number];
 
@@ -40,7 +41,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   logout: async () => {
-    await AsyncStorage.multiRemove([KEY_AUTH, KEY_PLAN]);
+    await Promise.all([AsyncStorage.multiRemove([KEY_AUTH, KEY_PLAN]), apiLogout()]);
     const welcomed = await AsyncStorage.getItem(KEY_WELCOME);
     set({
       currentUser: null,

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   View,
   TextInput,
@@ -7,16 +7,21 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  BackHandler,
   useWindowDimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
+import { router, useFocusEffect } from 'expo-router';
 import GradientView from '../../components/ui/GradientView';
 import { Colors } from '../../constants/Colors';
 import { Typography } from '../../constants/Typography';
 import { Spacing, Radius } from '../../constants/Layout';
 import { AppText, Card, ScreenHeader } from '../../components/ui';
+import ImagePickerModal from '../../components/ui/ImagePickerModal';
+import DateOfBirthPicker from '../../components/ui/DateOfBirthPicker';
+import { useToast } from '../../hooks/useToast';
+import Api from '../../services/Api';
 import { a11y } from '../../utils/a11y';
 
 const isWeb = Platform.OS === 'web';
@@ -98,13 +103,70 @@ export default function RegisterScreen() {
   const [civilStatus, setCivilStatus] = useState('Single');
   const [showPw, setShowPw] = useState(false);
   const [showCpw, setShowCpw] = useState(false);
+  const [photoUri, setPhotoUri] = useState<string | null>(null);
+  const [showImagePicker, setShowImagePicker] = useState(false);
+  const [dob, setDob] = useState<Date | null>(null);
 
+  const { showToast } = useToast();
   const { width } = useWindowDimensions();
   const isWide = isWeb && width >= 768;
 
+  // Android: back goes to previous screen instead of exiting the app
+  useFocusEffect(
+    useCallback(() => {
+      if (Platform.OS !== 'android') return;
+      const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+        router.back();
+        return true;
+      });
+      return () => sub.remove();
+    }, []),
+  );
+
   const handleJoinNow = useCallback(() => {
-    router.push('/(auth)/join-church');
-  }, []);
+    // Validate before proceeding
+    if (!firstName.trim() || !lastName.trim()) {
+      showToast({ type: 'error', message: 'Please enter your first and last name.' });
+      return;
+    }
+    if (!email.trim() || !password.trim()) {
+      showToast({ type: 'error', message: 'Please enter your email and password.' });
+      return;
+    }
+    if (password !== confirmPassword) {
+      showToast({ type: 'error', message: 'Passwords do not match.' });
+      return;
+    }
+    if (!dob) {
+      showToast({ type: 'error', message: 'Please select your date of birth.' });
+      return;
+    }
+
+    const formData = {
+      appName:      Api.appName,
+      firstName:    firstName.trim(),
+      lastName:     lastName.trim(),
+      email:        email.trim(),
+      password,
+      mobile:       mobile.trim(),
+      birthDate:    dob.toISOString().split('T')[0], // YYYY-MM-DD
+      civilStatus,
+      barangay:     barangay.trim(),
+      municipality: municipality.trim(),
+      profile:      photoUri ?? undefined,
+    };
+
+    console.log('[REGISTER] Passing Data:', { ...formData, password: `(${formData.password.length} chars)` });
+
+    router.push({
+      pathname: '/(auth)/join-church',
+      params: { formData: JSON.stringify(formData) },
+    });
+  }, [
+    firstName, lastName, email, password, confirmPassword,
+    mobile, dob, civilStatus, barangay, municipality,
+    photoUri, showToast,
+  ]);
 
   // ── Web form content ───────────────────────────────────────────────────────
   const WebFormContent = (
@@ -288,13 +350,35 @@ export default function RegisterScreen() {
           keyboardShouldPersistTaps="handled"
         >
           <View style={styles.avatarWrap}>
-            <View style={styles.avatarCircle}>
-              <Ionicons name="camera-outline" size={28} color={Colors.textMuted} />
-            </View>
+            <TouchableOpacity
+              onPress={() => setShowImagePicker(true)}
+              activeOpacity={0.8}
+              accessibilityLabel="Add profile photo"
+            >
+              {photoUri ? (
+                <View style={styles.avatarCircle}>
+                  {React.createElement(require('expo-image').Image, {
+                    source: { uri: photoUri },
+                    style: { width: 80, height: 80, borderRadius: 40 },
+                    contentFit: 'cover',
+                  })}
+                </View>
+              ) : (
+                <View style={styles.avatarCircle}>
+                  <Ionicons name="camera-outline" size={28} color={Colors.textMuted} />
+                </View>
+              )}
+            </TouchableOpacity>
             <AppText variant="caption" color={Colors.textMuted} style={styles.avatarLabel}>
-              Add photo
+              {photoUri ? 'Change photo' : 'Add photo'}
             </AppText>
           </View>
+
+          <ImagePickerModal
+            visible={showImagePicker}
+            onClose={() => setShowImagePicker(false)}
+            onImageSelected={(uri) => { setPhotoUri(uri); setShowImagePicker(false); }}
+          />
 
           <AppText variant="headingSm" color={Colors.navy} style={styles.sectionTitle}>
             Personal Information
@@ -302,13 +386,7 @@ export default function RegisterScreen() {
           <Card style={styles.card}>
             <FormInput label="First Name" value={firstName} onChangeText={setFirstName} />
             <FormInput label="Last Name" value={lastName} onChangeText={setLastName} />
-            <View style={styles.fieldWrap}>
-              <AppText variant="label" color={Colors.textSecondary} style={styles.fieldLabel}>Birthday</AppText>
-              <TouchableOpacity style={styles.inputRow} {...a11y} accessibilityLabel="Select birthday" activeOpacity={0.7}>
-                <AppText variant="bodyMd" color={Colors.textMuted}>Select date</AppText>
-                <Ionicons name="calendar-outline" size={16} color={Colors.textMuted} />
-              </TouchableOpacity>
-            </View>
+            <DateOfBirthPicker value={dob} onChange={setDob} />
             <View style={styles.fieldWrap}>
               <AppText variant="label" color={Colors.textSecondary} style={styles.fieldLabel}>Civil Status</AppText>
               <View style={styles.segmentRow}>
