@@ -21,7 +21,7 @@ import { AppText, Card, ScreenHeader } from '../../components/ui';
 import ImagePickerModal from '../../components/ui/ImagePickerModal';
 import DateOfBirthPicker from '../../components/ui/DateOfBirthPicker';
 import { useToast } from '../../hooks/useToast';
-import Api from '../../services/api';
+import Api from '../../services/Api';
 import { a11y } from '../../utils/a11y';
 
 const isWeb = Platform.OS === 'web';
