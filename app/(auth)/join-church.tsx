@@ -24,7 +24,7 @@ import { AppText, Card, Badge } from '../../components/ui';
 import { useAuthStore } from '../../store/authStore';
 import { useToast } from '../../hooks/useToast';
 import { apiRegister, getPublicData } from '../../services/ApiHandler';
-import Api from '../../services/Api';
+import Api from '../../services/api';
 
 type Church = {
   _id?: string;
