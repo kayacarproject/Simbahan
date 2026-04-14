@@ -12,6 +12,8 @@ export { default as InfoRow } from './InfoRow';
 export { default as FloatingCross } from './FloatingCross';
 export { default as GradientView } from './GradientView';
 export { default as Toast } from './Toast';
+export { default as ImagePickerModal } from './ImagePickerModal';
+export { default as DateOfBirthPicker } from './DateOfBirthPicker';
 export { default as AnnouncementCard } from './AnnouncementCard';
 export { default as EventCard } from './EventCard';
 export { default as Img } from './Img';

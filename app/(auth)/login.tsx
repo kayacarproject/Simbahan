@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   View,
   TextInput,
@@ -7,17 +7,22 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  BackHandler,
   useWindowDimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
+import * as SecureStore from 'expo-secure-store';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import GradientView from '../../components/ui/GradientView';
 import { Colors } from '../../constants/Colors';
 import { Typography } from '../../constants/Typography';
 import { Spacing, Radius } from '../../constants/Layout';
 import { AppText, FloatingCross } from '../../components/ui';
+import { useToast } from '../../hooks/useToast';
 import { useAuthStore } from '../../store/authStore';
+import { apiLogin } from '../../services/ApiHandler';
+import Api from '../../services/Api';
 import { a11y } from '../../utils/a11y';
 
 const isWeb = Platform.OS === 'web';
@@ -26,31 +31,70 @@ export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
-  const login = useAuthStore((s) => s.login);
+  const [loading, setLoading] = useState(false);
+  const { showToast } = useToast();
+  const loginStore = useAuthStore((s) => s.login);
   const { width } = useWindowDimensions();
   const isWide = isWeb && width >= 768;
 
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      BackHandler.exitApp();
+      return true;
+    });
+    return () => sub.remove();
+  }, []);
+
   const handleLogin = useCallback(async () => {
     if (!email.trim() || !password.trim()) {
-      setError('Please enter your email and password.');
+      showToast({ type: 'error', message: 'Please enter your email and password.' });
       return;
     }
-    setError('');
-    await login();
-    router.replace('/home');
-  }, [email, password, login]);
+
+    setLoading(true);
+
+    const body = {
+      appName:    Api.appName,
+      identifier: email.trim(),
+      password,
+    };
+
+    try {
+      const data = await apiLogin(body);
+
+      if (data?.status === 'success') {
+        const token  = data?.data?.access_token;
+        const userId = data?.data?.user?.id ?? data?.data?.user?._id ?? '';
+
+        console.log('[LOGIN] Token  :', token  ? token.slice(0, 20) + '…' : 'none');
+        console.log('[LOGIN] UserID :', userId || '(not in response)');
+
+        if (token) {
+          await SecureStore.setItemAsync('access_token', token);
+          if (userId) await SecureStore.setItemAsync('user_id', userId);
+        }
+
+        await loginStore(userId || undefined);
+
+        showToast({ type: 'success', message: 'Welcome back! Login successful.' });
+        router.replace('/home');
+      } else {
+        showToast({ type: 'error', message: data?.message || 'Login failed. Please try again.' });
+      }
+    } catch (error: any) {
+      const msg = error?.response?.data?.message || 'Something went wrong. Please try again.';
+      console.log('[LOGIN] Error:', error?.response?.data || error.message);
+      showToast({ type: 'error', message: msg });
+    } finally {
+      setLoading(false);
+    }
+  }, [email, password, loginStore, showToast]);
 
   const togglePassword = useCallback(() => setShowPassword((v) => !v), []);
 
   const FormContent = (
     <>
-      {error ? (
-        <AppText variant="bodySm" color={Colors.crimson} style={styles.errorText}>
-          {error}
-        </AppText>
-      ) : null}
-
       <View style={styles.inputWrap}>
         <Ionicons name="mail-outline" size={18} color={Colors.textMuted} style={styles.inputIcon} />
         <TextInput
@@ -98,13 +142,14 @@ export default function LoginScreen() {
 
       <TouchableOpacity
         onPress={handleLogin}
-        style={styles.loginBtn}
+        style={[styles.loginBtn, loading && styles.loginBtnDisabled]}
+        disabled={loading}
         {...a11y}
         accessibilityLabel="Sign in"
         activeOpacity={0.8}
       >
         <AppText variant="label" color={Colors.textInverse} style={styles.loginBtnText}>
-          Sign In
+          {loading ? 'Signing in…' : 'Sign In'}
         </AppText>
       </TouchableOpacity>
 
@@ -304,6 +349,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: Spacing.md,
   },
+  loginBtnDisabled: { opacity: 0.6 },
   loginBtnText: { fontSize: 15 },
   dividerRow: { flexDirection: 'row', alignItems: 'center', marginBottom: Spacing.md },
   dividerLine: { flex: 1, height: 1, backgroundColor: Colors.border },
