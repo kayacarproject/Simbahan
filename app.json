@@ -71,9 +71,7 @@
     ],
     "experiments": {
       "typedRoutes": true
-    },
-     "extra": {
-      "EXPO_PUBLIC_API_KEY": "sk_live_46012485b3c9824e07ee5902445bd4dc247af14740663584f5fd5b61859f62a1"
     }
+   
   }
 }
