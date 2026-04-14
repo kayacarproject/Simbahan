@@ -1,7 +1,8 @@
-import { API_BASE_URL } from '../constants/config';
+const Api = {
+  baseUrl:  'https://api.hanaplatform.com/api/v1',
+  appName:  'simbahan.conscor.com',
+  timeout:  15_000, // ms
+  apiKey:   '', // set if the API supports x-api-key fallback
+} as const;
 
-export async function apiFetch<T>(endpoint: string): Promise<T> {
-  const res = await fetch(`${API_BASE_URL}${endpoint}`);
-  if (!res.ok) throw new Error(`API error: ${res.status}`);
-  return res.json();
-}
+export default Api;
