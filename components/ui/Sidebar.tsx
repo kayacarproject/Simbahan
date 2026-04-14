@@ -9,6 +9,7 @@ import { Spacing, Radius } from '../../constants/Layout';
 import AppText from './AppText';
 import { useAuthStore } from '../../store/authStore';
 import { useUiStore } from '../../store/uiStore';
+import { useLogout } from '../../hooks/useLogout';
 import churchData from '../../data/church.json';
 
 const SIDEBAR_W = 280;
@@ -59,7 +60,7 @@ export default function Sidebar() {
   const isOpen = useUiStore((s) => s.sidebarOpen);
   const closeSidebar = useUiStore((s) => s.closeSidebar);
   const currentUser = useAuthStore((s) => s.currentUser);
-  const logout = useAuthStore((s) => s.logout);
+  const { logout } = useLogout();
   const pathname = usePathname();
 
   const translateX = useSharedValue(-SIDEBAR_W);
@@ -83,8 +84,7 @@ export default function Sidebar() {
 
   const handleLogout = useCallback(async () => {
     closeSidebar();
-    await logout();
-    router.replace('/(auth)/login');
+    await logout(); // clears store + SecureStore + replaces stack
   }, [closeSidebar, logout]);
 
   if (Platform.OS === 'web') return null;

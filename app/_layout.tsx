@@ -26,7 +26,7 @@ import { Spacing } from "../constants/Layout";
 
 SplashScreen.preventAutoHideAsync();
 
-const ROOT_ROUTES = ["/home", "/"];
+const ROOT_ROUTES = ["/home", "/", "/(auth)/login"];
 
 function DemoBanner() {
   const { theme } = useTheme();

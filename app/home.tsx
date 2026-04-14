@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Spacing } from '../constants/Layout';
 import { useChurchStore } from '../store/churchStore';
 import { useTheme } from '../theme/ThemeContext';
+import { useAuthGuard } from '../hooks/useAuthGuard';
 import WebLayout from '../components/ui/WebLayout';
 import HomeHeader from '../components/home/HomeHeader';
 import NextMassCard from '../components/home/NextMassCard';
@@ -18,6 +19,7 @@ import FastingReminder from '../components/home/FastingReminder';
 const isWeb = Platform.OS === 'web';
 
 export default function HomeScreen() {
+  useAuthGuard();
   const { theme } = useTheme();
   const announcements = useChurchStore((s) => s.announcements);
   const hasUnread = useMemo(() => announcements.some((a) => !a.isRead), [announcements]);
