@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { USE_API } from '../constants/config';
-import { apiFetch } from '../services/api';
+import { apiFetch } from '../services/Api';
 
 type State<T> = { data: T | null; loading: boolean; error: string | null };
 

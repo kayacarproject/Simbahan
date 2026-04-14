@@ -22,7 +22,7 @@ import { AppText, FloatingCross } from '../../components/ui';
 import { useToast } from '../../hooks/useToast';
 import { useAuthStore } from '../../store/authStore';
 import { apiLogin } from '../../services/ApiHandler';
-import Api from '../../services/api';
+import Api from '../../services/Api';
 import { a11y } from '../../utils/a11y';
 
 const isWeb = Platform.OS === 'web';
