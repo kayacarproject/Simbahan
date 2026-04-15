@@ -166,6 +166,7 @@ export async function apiLogin(identifier: string, password: string): Promise<Lo
 
 export async function apiLogout(): Promise<void> {
   await logout();
+}
 // Mock auth service — swap fetch() calls for real API endpoints when ready
 
 const MOCK_OTP = '123456';
