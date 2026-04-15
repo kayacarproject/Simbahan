@@ -1,11 +1,7 @@
 import React, { useCallback } from "react";
 import {
-  View,
-  FlatList,
-  TouchableOpacity,
-  StyleSheet,
-  Platform,
-  ListRenderItemInfo,
+  View, FlatList, TouchableOpacity, StyleSheet,
+  Platform, ListRenderItemInfo,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
@@ -18,6 +14,7 @@ import { Colors } from "../../constants/Colors";
 import { Spacing, Radius } from "../../constants/Layout";
 import { useAuthStore } from "../../store/authStore";
 import { useUiStore } from "../../store/uiStore";
+import { useTheme } from "../../theme/ThemeContext";
 
 const isWeb = Platform.OS === "web";
 
@@ -31,144 +28,56 @@ type MenuItem = {
 };
 
 const MENU: MenuItem[] = [
-  {
-    id: "1",
-    label: "Iskedyul ng Misa",
-    sublabel: "Mass Schedule",
-    icon: "time-outline",
-    dot: Colors.navy,
-    route: "/mass-schedule",
-  },
-  {
-    id: "2",
-    label: "Donasyon",
-    sublabel: "Donations",
-    icon: "gift-outline",
-    dot: Colors.gold,
-    route: "/donations",
-  },
-  {
-    id: "3",
-    label: "Komunidad",
-    sublabel: "Community",
-    icon: "people-outline",
-    dot: Colors.sage,
-    route: "/community",
-  },
-  {
-    id: "4",
-    label: "Aking Pamilya",
-    sublabel: "My Family",
-    icon: "heart-outline",
-    dot: Colors.crimson,
-    route: "/family",
-  },
-  {
-    id: "5",
-    label: "Sakramento",
-    sublabel: "Sacraments",
-    icon: "water-outline",
-    dot: Colors.sage,
-    route: "/sacraments",
-  },
-  {
-    id: "6",
-    label: "Nobena",
-    sublabel: "Novenas & Prayers",
-    icon: "book-outline",
-    dot: Colors.gold,
-    route: "/novenas",
-  },
-  {
-    id: "7",
-    label: "Mahal na Araw",
-    sublabel: "Holy Week",
-    icon: "sunny-outline",
-    dot: Colors.crimson,
-    route: "/holy-week",
-  },
-  {
-    id: "8",
-    label: "Simbang Gabi",
-    sublabel: "Dawn Mass Tracker",
-    icon: "moon-outline",
-    dot: Colors.navy,
-    route: "/simbang-gabi",
-  },
-  {
-    id: "9",
-    label: "Profile",
-    sublabel: "Aking Account",
-    icon: "person-outline",
-    dot: Colors.navy,
-    route: "/profile",
-  },
-  {
-    id: "10",
-    label: "Mga Abiso",
-    sublabel: "Notifications",
-    icon: "notifications-outline",
-    dot: Colors.gold,
-    route: "/notifications",
-  },
-  {
-    id: "11",
-    label: "Mga Setting",
-    sublabel: "Settings",
-    icon: "settings-outline",
-    dot: Colors.textMuted,
-    route: "/settings",
-  },
-  {
-    id: "12",
-    label: "Info ng Parokya",
-    sublabel: "Parish Info",
-    icon: "business-outline",
-    dot: Colors.navy,
-    route: "/parish-info",
-  },
+  { id: "1",  label: "Iskedyul ng Misa", sublabel: "Mass Schedule",      icon: "time-outline",          dot: Colors.navy,     route: "/mass-schedule" },
+  { id: "2",  label: "Donasyon",         sublabel: "Donations",           icon: "gift-outline",          dot: Colors.gold,     route: "/donations" },
+  { id: "3",  label: "Komunidad",        sublabel: "Community",           icon: "people-outline",        dot: Colors.sage,     route: "/community" },
+  { id: "4",  label: "Aking Pamilya",    sublabel: "My Family",           icon: "heart-outline",         dot: Colors.crimson,  route: "/family" },
+  { id: "5",  label: "Sakramento",       sublabel: "Sacraments",          icon: "water-outline",         dot: Colors.sage,     route: "/sacraments" },
+  { id: "6",  label: "Nobena",           sublabel: "Novenas & Prayers",   icon: "book-outline",          dot: Colors.gold,     route: "/novenas" },
+  { id: "7",  label: "Mahal na Araw",    sublabel: "Holy Week",           icon: "sunny-outline",         dot: Colors.crimson,  route: "/holy-week" },
+  { id: "8",  label: "Simbang Gabi",     sublabel: "Dawn Mass Tracker",   icon: "moon-outline",          dot: Colors.navy,     route: "/simbang-gabi" },
+  { id: "9",  label: "Profile",          sublabel: "Aking Account",       icon: "person-outline",        dot: Colors.navy,     route: "/profile" },
+  { id: "10", label: "Mga Abiso",        sublabel: "Notifications",       icon: "notifications-outline", dot: Colors.gold,     route: "/notifications" },
+  { id: "11", label: "Mga Setting",      sublabel: "Settings",            icon: "settings-outline",      dot: Colors.textMuted,route: "/settings" },
+  { id: "12", label: "Info ng Parokya",  sublabel: "Parish Info",         icon: "business-outline",      dot: Colors.navy,     route: "/parish-info" },
 ];
 
 const keyExtractor = (item: MenuItem) => item.id;
 
-const MenuCard = React.memo(
-  ({ item, onPress }: { item: MenuItem; onPress: (r: string) => void }) => (
+const MenuCard = React.memo(({ item, onPress }: { item: MenuItem; onPress: (r: string) => void }) => {
+  const { theme } = useTheme();
+  const iconColor = item.dot === Colors.navy ? theme.primary : item.dot;
+  return (
     <TouchableOpacity
       onPress={() => onPress(item.route)}
-      style={styles.card}
+      style={[styles.card, { backgroundColor: theme.surface, borderColor: theme.border }]}
       activeOpacity={0.75}
       accessible
       accessibilityLabel={item.label}
       accessibilityRole="button"
     >
       <View style={styles.cardIconRow}>
-        <View style={[styles.iconWrap, { backgroundColor: item.dot + "18" }]}>
-          <Ionicons
-            name={item.icon}
-            size={24}
-            color={item.dot === Colors.textMuted ? Colors.textMuted : item.dot}
-          />
+        <View style={[styles.iconWrap, { backgroundColor: iconColor + "18" }]}>
+          <Ionicons name={item.icon} size={24} color={iconColor} />
         </View>
-        <View style={[styles.dot, { backgroundColor: item.dot }]} />
+        <View style={[styles.dot, { backgroundColor: iconColor }]} />
       </View>
-      <AppText variant="headingSm" color={Colors.textPrimary} numberOfLines={1}>
+      <AppText variant="headingSm" color={theme.text} numberOfLines={1}>
         {item.label}
       </AppText>
-      <AppText variant="caption" color={Colors.textMuted} numberOfLines={1}>
+      <AppText variant="caption" color={theme.textMuted} numberOfLines={1}>
         {item.sublabel}
       </AppText>
     </TouchableOpacity>
-  ),
-);
+  );
+});
 
 export default function MoreScreen() {
+  const { theme } = useTheme();
   const currentUser = useAuthStore((s) => s.currentUser);
   const openSidebar = useUiStore((s) => s.openSidebar);
 
-  const handleNav = useCallback(
-    (route: string) => router.push(route as never),
-    [],
-  );
+  const handleNav = useCallback((route: string) => router.push(route as never), []);
 
   const fullName = currentUser
     ? `${currentUser.firstName} ${currentUser.lastName}`
@@ -176,10 +85,8 @@ export default function MoreScreen() {
 
   const ListHeader = (
     <>
-      <GradientView
-        colors={[Colors.navyDark, Colors.navy]}
-        style={styles.header}
-      >
+      {/* Header gradient — always navy, intentional brand color */}
+      <GradientView colors={[Colors.navyDark, Colors.navy]} style={styles.header}>
         <View style={styles.headerInner}>
           <View style={styles.headerTop}>
             {!isWeb && (
@@ -206,37 +113,31 @@ export default function MoreScreen() {
       {/* Profile shortcut */}
       <TouchableOpacity
         onPress={() => handleNav("/profile")}
-        style={styles.profileCard}
+        style={[styles.profileCard, { backgroundColor: theme.surface, borderColor: theme.border }]}
         activeOpacity={0.85}
         accessible
         accessibilityLabel="Tingnan ang profile"
       >
         <Avatar uri={currentUser?.avatar} name={fullName} size="md" />
         <View style={styles.profileInfo}>
-          <AppText variant="headingSm" color={Colors.navy} numberOfLines={1}>
+          <AppText variant="headingSm" color={theme.primary} numberOfLines={1}>
             {fullName}
           </AppText>
-          <AppText variant="caption" color={Colors.textMuted} numberOfLines={1}>
+          <AppText variant="caption" color={theme.textMuted} numberOfLines={1}>
             {currentUser?.role ?? "miyembro"} · i-tap para tingnan ang profile
           </AppText>
         </View>
-        <Ionicons name="chevron-forward" size={18} color={Colors.textMuted} />
+        <Ionicons name="chevron-forward" size={18} color={theme.textMuted} />
       </TouchableOpacity>
 
-      <AppText
-        variant="label"
-        color={Colors.textMuted}
-        style={styles.gridLabel}
-      >
+      <AppText variant="label" color={theme.textMuted} style={styles.gridLabel}>
         MGA TAMPOK
       </AppText>
     </>
   );
 
   const renderItem = useCallback(
-    ({ item }: ListRenderItemInfo<MenuItem>) => (
-      <MenuCard item={item} onPress={handleNav} />
-    ),
+    ({ item }: ListRenderItemInfo<MenuItem>) => <MenuCard item={item} onPress={handleNav} />,
     [handleNav],
   );
 
@@ -254,96 +155,27 @@ export default function MoreScreen() {
       initialNumToRender={8}
       maxToRenderPerBatch={8}
       windowSize={5}
+      style={{ backgroundColor: theme.background }}
     />
   );
 
-  if (isWeb)
-    return (
-      <WebLayout>
-        <View style={styles.screen}>{list}</View>
-      </WebLayout>
-    );
-  return (
-    <SafeAreaView style={styles.screen} edges={["top"]}>
-      {list}
-    </SafeAreaView>
-  );
+  if (isWeb) return <WebLayout><View style={[styles.screen, { backgroundColor: theme.background }]}>{list}</View></WebLayout>;
+  return <SafeAreaView style={[styles.screen, { backgroundColor: theme.background }]} edges={["top"]}>{list}</SafeAreaView>;
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: Colors.cream },
-
-  header: {
-    paddingTop: Spacing.md,
-    paddingBottom: Spacing.xl,
-    paddingHorizontal: 0,
-    gap: 4,
-  },
-  headerInner: {
-    paddingHorizontal: Spacing.lg,
-  },
-  headerTop: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    marginBottom: Spacing.xs,
-  },
-  menuBtn: { padding: Spacing.xs },
-
-  profileCard: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: Spacing.md,
-    backgroundColor: Colors.textInverse,
-    borderWidth: 1,
-    borderColor: Colors.border,
-    borderRadius: Radius.md,
-    padding: Spacing.md,
-    marginHorizontal: Spacing.md,
-    marginTop: Spacing.md,
-    marginBottom: 0,
-  },
-  profileInfo: { flex: 1 },
-
-  gridLabel: {
-    marginHorizontal: Spacing.md,
-    marginTop: Spacing.lg,
-    marginBottom: Spacing.sm,
-    letterSpacing: 0.6,
-  },
-
-  listContent: { paddingBottom: Spacing.xxl },
-  columnWrapper: {
-    gap: Spacing.md,
-    marginBottom: Spacing.md,
-    paddingHorizontal: Spacing.md,
-  },
-
-  card: {
-    flex: 1,
-    backgroundColor: Colors.textInverse,
-    borderWidth: 1,
-    borderColor: Colors.border,
-    borderRadius: Radius.md,
-    padding: Spacing.md,
-    gap: Spacing.xs,
-  },
-  cardIconRow: {
-    flexDirection: "row",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
-    marginBottom: Spacing.xs,
-  },
-  iconWrap: {
-    width: 44,
-    height: 44,
-    borderRadius: Radius.sm,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  dot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    marginTop: 4,
-  },
+  screen:       { flex: 1 },
+  header:       { paddingTop: Spacing.md, paddingBottom: Spacing.xl, paddingHorizontal: 0, gap: 4 },
+  headerInner:  { paddingHorizontal: Spacing.lg },
+  headerTop:    { flexDirection: "row", justifyContent: "flex-start", marginBottom: Spacing.xs },
+  menuBtn:      { padding: Spacing.xs },
+  profileCard:  { flexDirection: "row", alignItems: "center", gap: Spacing.md, borderWidth: 1, borderRadius: Radius.md, padding: Spacing.md, marginHorizontal: Spacing.md, marginTop: Spacing.md, marginBottom: 0 },
+  profileInfo:  { flex: 1 },
+  gridLabel:    { marginHorizontal: Spacing.md, marginTop: Spacing.lg, marginBottom: Spacing.sm, letterSpacing: 0.6 },
+  listContent:  { paddingBottom: Spacing.xxl },
+  columnWrapper:{ gap: Spacing.md, marginBottom: Spacing.md, paddingHorizontal: Spacing.md },
+  card:         { flex: 1, borderWidth: 1, borderRadius: Radius.md, padding: Spacing.md, gap: Spacing.xs },
+  cardIconRow:  { flexDirection: "row", alignItems: "flex-start", justifyContent: "space-between", marginBottom: Spacing.xs },
+  iconWrap:     { width: 44, height: 44, borderRadius: Radius.sm, alignItems: "center", justifyContent: "center" },
+  dot:          { width: 8, height: 8, borderRadius: 4, marginTop: 4 },
 });

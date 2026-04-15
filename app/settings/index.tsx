@@ -12,7 +12,7 @@ import { useAuthStore } from '../../store/authStore';
 import { useModule10Store } from '../../store/module10Store';
 import { useTheme } from '../../theme/ThemeContext';
 import { useCountryStore, COUNTRIES, ENABLE_COUNTRY_SELECTION } from '../../store/countryStore';
-import churchData from '../../data/church.json';
+import { useChurchData } from '../../hooks/useChurchData';
 import BackBar from '../../components/ui/BackBar';
 
 const isWeb = Platform.OS === 'web';
@@ -71,6 +71,7 @@ export default function SettingsScreen() {
 
   const [aboutVisible, setAboutVisible] = useState(false);
   const [pwVisible, setPwVisible] = useState(false);
+  const { church } = useChurchData();
 
   const handleChangeCountry = useCallback(() => {
     Alert.alert(
@@ -155,7 +156,7 @@ export default function SettingsScreen() {
           {divider}
           <SettingRow icon="lock-closed-outline" label="Baguhin ang Password" onPress={() => setPwVisible(true)} />
           {divider}
-          <SettingRow icon="business-outline" label="Aking Simbahan" value={churchData.name} />
+          <SettingRow icon="business-outline" label="Aking Simbahan" value={church.name} />
         </SectionCard>
 
         {/* Notifications */}
@@ -265,9 +266,9 @@ export default function SettingsScreen() {
         <SectionCard title="Tungkol sa App">
           <SettingRow icon="information-circle-outline" label="Bersyon ng App" value={APP_VERSION} />
           {divider}
-          <SettingRow icon="business-outline" label="Parokya" value={churchData.name} />
+          <SettingRow icon="business-outline" label="Parokya" value={church.name} />
           {divider}
-          <SettingRow icon="globe-outline" label="Diyosesis" value={churchData.diocese} />
+          <SettingRow icon="globe-outline" label="Diyosesis" value={church.diocese} />
           {divider}
           <SettingRow icon="help-circle-outline" label="Tungkol sa Simbahan App" onPress={() => setAboutVisible(true)} />
         </SectionCard>

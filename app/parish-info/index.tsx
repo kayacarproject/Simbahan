@@ -9,7 +9,7 @@ import WebLayout from '../../components/ui/WebLayout';
 import { Colors } from '../../constants/Colors';
 import { Spacing, Radius } from '../../constants/Layout';
 import { useMemberStore } from '../../store/memberStore';
-import churchData from '../../data/church.json';
+import { useChurchData } from '../../hooks/useChurchData';
 import BackBar from '../../components/ui/BackBar';
 
 const isWeb = Platform.OS === 'web';
@@ -35,10 +35,11 @@ function ContactRow({ icon, label, value, onPress }: {
 export default function ParishInfoScreen() {
   const members = useMemberStore((s) => s.members);
   const families = useMemberStore((s) => s.families);
+  const { church } = useChurchData();
 
   const daysToFeast = useMemo(() => {
     const now = new Date();
-    const [month, day] = churchData.feastDay.split(' ');
+    const [month, day] = church.feastDay.split(' ');
     const months: Record<string, number> = {
       January:1,February:2,March:3,April:4,May:5,June:6,
       July:7,August:8,September:9,October:10,November:11,December:12,
@@ -46,7 +47,7 @@ export default function ParishInfoScreen() {
     let feast = new Date(now.getFullYear(), (months[month] ?? 3) - 1, parseInt(day));
     if (feast < now) feast = new Date(now.getFullYear() + 1, feast.getMonth(), feast.getDate());
     return Math.ceil((feast.getTime() - now.getTime()) / 86400000);
-  }, []);
+  }, [church.feastDay]);
 
   const content = (
     <>
@@ -60,27 +61,27 @@ export default function ParishInfoScreen() {
       {/* Hero image */}
       <View style={styles.heroWrap}>
         <Image
-          source={{ uri: churchData.image }}
+          source={{ uri: church.churchimg ?? 'https://picsum.photos/id/1060/600/400' }}
           style={styles.heroImg}
           contentFit="cover"
           transition={200}
           accessible
-          accessibilityLabel={churchData.name}
+          accessibilityLabel={church.name}
         />
         <View style={styles.heroOverlay}>
           <AppText variant="displaySm" color={Colors.textInverse} style={styles.heroName}>
-            {churchData.name}
+            {church.name}
           </AppText>
-          <AppText variant="bodySm" color={Colors.goldLight}>{churchData.diocese}</AppText>
+          <AppText variant="bodySm" color={Colors.goldLight}>{church.diocese}</AppText>
         </View>
       </View>
 
       {/* Quick info */}
       <View style={styles.quickRow}>
         {[
-          { label: 'Patron', value: churchData.patron },
-          { label: 'Itinatag', value: churchData.founded },
-          { label: 'Pastor', value: 'Fr. Santos' },
+          { label: 'Patron',   value: church.patron },
+          { label: 'Itinatag', value: church.founded },
+          { label: 'Pastor',   value: church.pastor },
         ].map((item) => (
           <View key={item.label} style={styles.quickItem}>
             <AppText variant="headingSm" color={Colors.navy}>{item.value}</AppText>
@@ -92,24 +93,24 @@ export default function ParishInfoScreen() {
       {/* Contact */}
       <View style={styles.card}>
         <AppText variant="headingSm" color={Colors.navy} style={styles.cardTitle}>Pakikipag-ugnayan</AppText>
-        <ContactRow icon="location-outline" label="Address"  value={churchData.address} />
+        <ContactRow icon="location-outline" label="Address"  value={church.address} />
         <View style={styles.divider} />
-        <ContactRow icon="call-outline"     label="Telepono" value={churchData.phone}
-          onPress={() => Linking.openURL(`tel:${churchData.phone}`)} />
+        <ContactRow icon="call-outline"     label="Telepono" value={church.phone}
+          onPress={() => Linking.openURL(`tel:${church.phone}`)} />
         <View style={styles.divider} />
-        <ContactRow icon="mail-outline"     label="Email"    value={churchData.email}
-          onPress={() => Linking.openURL(`mailto:${churchData.email}`)} />
+        <ContactRow icon="mail-outline"     label="Email"    value={church.email}
+          onPress={() => Linking.openURL(`mailto:${church.email}`)} />
         <View style={styles.divider} />
-        <ContactRow icon="globe-outline"    label="Website"  value={churchData.website}
-          onPress={() => Linking.openURL(churchData.website)} />
+        <ContactRow icon="globe-outline"    label="Website"  value={church.website}
+          onPress={() => Linking.openURL(church.website)} />
       </View>
 
       {/* Feast countdown */}
       <View style={styles.feastCard}>
         <Ionicons name="star" size={24} color={Colors.gold} />
         <View style={{ flex: 1 }}>
-          <AppText variant="headingSm" color={Colors.navy}>Kapistahan ni {churchData.patron}</AppText>
-          <AppText variant="caption" color={Colors.textMuted}>{churchData.feastDay}</AppText>
+          <AppText variant="headingSm" color={Colors.navy}>Kapistahan ni {church.patron}</AppText>
+          <AppText variant="caption" color={Colors.textMuted}>{church.feastDay}</AppText>
         </View>
         <View style={styles.countdownBadge}>
           <AppText variant="displaySm" color={Colors.navy}>{daysToFeast}</AppText>
@@ -120,9 +121,9 @@ export default function ParishInfoScreen() {
       {/* Stats */}
       <View style={styles.statsRow}>
         {[
-          { value: members.length.toString(),  label: 'Miyembro'   },
-          { value: families.length.toString(), label: 'Pamilya'    },
-          { value: churchData.ministries.length.toString(), label: 'Ministeryo' },
+          { value: members.length.toString(),                          label: 'Miyembro'   },
+          { value: families.length.toString(),                         label: 'Pamilya'    },
+          { value: church.ministries.split(',').length.toString(),     label: 'Ministeryo' },
         ].map((s, i) => (
           <React.Fragment key={s.label}>
             {i > 0 && <View style={styles.statDivider} />}
@@ -140,7 +141,7 @@ export default function ParishInfoScreen() {
         <View style={styles.contactRow}>
           <Ionicons name="time-outline" size={16} color={Colors.gold} />
           <AppText variant="bodyMd" color={Colors.textPrimary} style={{ flex: 1 }}>
-            {churchData.officeHours}
+            {church.officeHours}
           </AppText>
         </View>
       </View>

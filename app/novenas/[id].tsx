@@ -2,7 +2,6 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { View, ScrollView, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
 import AppText from '../../components/ui/AppText';
 import AppButton from '../../components/ui/AppButton';
@@ -11,16 +10,23 @@ import { Colors } from '../../constants/Colors';
 import { Spacing, Radius } from '../../constants/Layout';
 import { useModule09Store } from '../../store/module09Store';
 import { useUiStore } from '../../store/uiStore';
-import novenasData from '../../data/novenas.json';
 
 const isWeb = Platform.OS === 'web';
 
 export default function NovenaDetailScreen() {
-  const { id } = useLocalSearchParams<{ id: string }>();
-  const novena = novenasData.find((n) => n.id === id);
+  const { id, patron, feastDate, description, duration } = useLocalSearchParams<{
+    id: string;
+    patron: string;
+    feastDate: string;
+    description: string;
+    duration: string;
+  }>();
+
   const novenaProgress = useModule09Store((s) => s.novenaProgress);
   const markPrayed = useModule09Store((s) => s.markPrayed);
   const showToast = useUiStore((s) => s.showToast);
+
+  const totalDays = Number(duration) || 9;
 
   const completedDays = useMemo(
     () => novenaProgress.find((p) => p.novenaId === id)?.completedDays ?? [],
@@ -29,18 +35,20 @@ export default function NovenaDetailScreen() {
 
   const [activeDay, setActiveDay] = useState(1);
 
-  const currentPrayer = novena?.prayers.find((p) => p.day === activeDay) ?? novena?.prayers[0];
-
   const handleMarkPrayed = useCallback(() => {
     if (!id) return;
     markPrayed(id, activeDay);
     showToast(`Araw ${activeDay} — naitala ang dasal!`, 'success');
-    if (activeDay < 9) setActiveDay((d) => d + 1);
-  }, [id, activeDay, markPrayed, showToast]);
+    if (activeDay < totalDays) setActiveDay((d) => d + 1);
+  }, [id, activeDay, markPrayed, showToast, totalDays]);
 
-  if (!novena) {
+  if (!id || !patron) {
     return (
       <SafeAreaView style={styles.screen} edges={['top']}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.backBtnPlain}>
+          <Ionicons name="arrow-back" size={20} color={Colors.navy} />
+          <AppText variant="bodyMd" color={Colors.navy}>Bumalik</AppText>
+        </TouchableOpacity>
         <AppText variant="bodyMd" color={Colors.textMuted} style={{ padding: Spacing.lg }}>
           Hindi nahanap ang nobena.
         </AppText>
@@ -52,27 +60,29 @@ export default function NovenaDetailScreen() {
     <ScrollView style={styles.screen} contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
       {/* Hero */}
       <View style={styles.heroWrap}>
-        <Image source={{ uri: novena.image }} style={styles.heroImg} contentFit="cover" transition={200} />
+        <View style={styles.heroGradient}>
+          <Ionicons name="book-outline" size={64} color={Colors.gold} />
+        </View>
         <View style={styles.heroOverlay}>
           <TouchableOpacity onPress={() => router.back()} style={styles.backBtn} accessible accessibilityLabel="Bumalik">
             <Ionicons name="arrow-back" size={20} color={Colors.textInverse} />
           </TouchableOpacity>
           <View style={styles.heroBottom}>
             <View style={styles.feastBadge}>
-              <AppText variant="caption" color={Colors.navy}>{novena.feastDate}</AppText>
+              <AppText variant="caption" color={Colors.navy}>{feastDate}</AppText>
             </View>
-            <AppText variant="displaySm" color={Colors.textInverse}>{novena.patron}</AppText>
+            <AppText variant="displaySm" color={Colors.textInverse}>{patron}</AppText>
           </View>
         </View>
       </View>
 
       {/* Info card */}
       <View style={styles.card}>
-        <AppText variant="bodyMd" color={Colors.textSecondary}>{novena.description}</AppText>
+        <AppText variant="bodyMd" color={Colors.textSecondary}>{description}</AppText>
         <View style={styles.traditionNote}>
           <Ionicons name="information-circle-outline" size={16} color={Colors.gold} />
           <AppText variant="caption" color={Colors.textMuted} style={{ flex: 1 }}>
-            Ang nobena ay isang siyam na araw na panalangin na may espesyal na intensyon.
+            Ang nobena ay isang {totalDays}-araw na panalangin na may espesyal na intensyon.
           </AppText>
         </View>
       </View>
@@ -81,7 +91,7 @@ export default function NovenaDetailScreen() {
       <View style={styles.card}>
         <AppText variant="headingSm" color={Colors.navy}>Pumili ng Araw</AppText>
         <View style={styles.dayRow}>
-          {Array.from({ length: 9 }, (_, i) => i + 1).map((day) => {
+          {Array.from({ length: totalDays }, (_, i) => i + 1).map((day) => {
             const done = completedDays.includes(day);
             const active = day === activeDay;
             return (
@@ -99,10 +109,7 @@ export default function NovenaDetailScreen() {
                 {done ? (
                   <Ionicons name="checkmark" size={14} color={Colors.textInverse} />
                 ) : (
-                  <AppText
-                    variant="label"
-                    color={active ? Colors.textInverse : Colors.textMuted}
-                  >
+                  <AppText variant="label" color={active ? Colors.textInverse : Colors.textMuted}>
                     {day}
                   </AppText>
                 )}
@@ -112,33 +119,29 @@ export default function NovenaDetailScreen() {
         </View>
       </View>
 
-      {/* Prayer content */}
-      {currentPrayer && (
-        <>
-          <View style={styles.card}>
-            <AppText variant="headingSm" color={Colors.navy}>{currentPrayer.title}</AppText>
-            <View style={styles.meditationNote}>
-              <AppText variant="caption" color={Colors.gold}>✦ Meditasyon</AppText>
-              <AppText variant="bodySm" color={Colors.textSecondary}>
-                Huminga nang malalim at ihanda ang inyong puso sa panalangin.
-              </AppText>
-            </View>
-          </View>
+      {/* Prayer placeholder */}
+      <View style={styles.card}>
+        <AppText variant="headingSm" color={Colors.navy}>Araw {activeDay} — Panalangin</AppText>
+        <View style={styles.meditationNote}>
+          <AppText variant="caption" color={Colors.gold}>✦ Meditasyon</AppText>
+          <AppText variant="bodySm" color={Colors.textSecondary}>
+            Huminga nang malalim at ihanda ang inyong puso sa panalangin.
+          </AppText>
+        </View>
+      </View>
 
-          <View style={styles.card}>
-            <AppText variant="caption" color={Colors.gold}>✦ Panalangin</AppText>
-            <AppText variant="bodyMd" color={Colors.textPrimary} style={styles.prayerText}>
-              {currentPrayer.prayer}
-            </AppText>
-            <View style={styles.scriptureRef}>
-              <Ionicons name="book-outline" size={14} color={Colors.textMuted} />
-              <AppText variant="caption" color={Colors.textMuted} style={{ marginLeft: 4 }}>
-                Mateo 7:7 — "Humingi kayo at kayo'y bibigyan..."
-              </AppText>
-            </View>
-          </View>
-        </>
-      )}
+      <View style={styles.card}>
+        <AppText variant="caption" color={Colors.gold}>✦ Panalangin</AppText>
+        <AppText variant="bodyMd" color={Colors.textPrimary} style={styles.prayerText}>
+          O {patron}, pakinggan ang aming mga panalangin sa araw na ito. Ipanalangin mo kami sa harapan ng Diyos at tulungan mo kaming maging tapat sa aming pananampalataya.
+        </AppText>
+        <View style={styles.scriptureRef}>
+          <Ionicons name="book-outline" size={14} color={Colors.textMuted} />
+          <AppText variant="caption" color={Colors.textMuted} style={{ marginLeft: 4 }}>
+            Mateo 7:7 — "Humingi kayo at kayo'y bibigyan..."
+          </AppText>
+        </View>
+      </View>
 
       {/* Navigation + mark prayed */}
       <View style={styles.navRow}>
@@ -154,14 +157,14 @@ export default function NovenaDetailScreen() {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => setActiveDay((d) => Math.min(9, d + 1))}
-          style={[styles.navBtn, activeDay === 9 && styles.navBtnDisabled]}
-          disabled={activeDay === 9}
+          onPress={() => setActiveDay((d) => Math.min(totalDays, d + 1))}
+          style={[styles.navBtn, activeDay === totalDays && styles.navBtnDisabled]}
+          disabled={activeDay === totalDays}
           accessible
           accessibilityLabel="Susunod na araw"
         >
-          <AppText variant="label" color={activeDay === 9 ? Colors.textMuted : Colors.navy}>Susunod</AppText>
-          <Ionicons name="chevron-forward" size={18} color={activeDay === 9 ? Colors.textMuted : Colors.navy} />
+          <AppText variant="label" color={activeDay === totalDays ? Colors.textMuted : Colors.navy}>Susunod</AppText>
+          <Ionicons name="chevron-forward" size={18} color={activeDay === totalDays ? Colors.textMuted : Colors.navy} />
         </TouchableOpacity>
       </View>
 
@@ -184,7 +187,13 @@ const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: Colors.cream },
   scroll: { paddingBottom: Spacing.xxl },
   heroWrap: { height: 220, position: 'relative' },
-  heroImg: { width: '100%', height: 220 },
+  heroGradient: {
+    width: '100%',
+    height: 220,
+    backgroundColor: Colors.navyDark,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   heroOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(0,0,0,0.45)',
@@ -264,4 +273,10 @@ const styles = StyleSheet.create({
   },
   navBtnDisabled: { opacity: 0.4 },
   markWrap: { margin: Spacing.md },
+  backBtnPlain: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.xs,
+    padding: Spacing.md,
+  },
 });

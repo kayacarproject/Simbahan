@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../constants/Colors';
 import { Spacing, Radius } from '../../constants/Layout';
 import { AppText } from '../ui';
-import churchData from '../../data/church.json';
+import { useChurchData } from '../../hooks/useChurchData';
 
 function getDaysUntilFeast(feastDay: string): number {
   const [month, day] = feastDay.split(' ');
@@ -19,32 +19,33 @@ function getDaysUntilFeast(feastDay: string): number {
 }
 
 const FeastCountdown = () => {
-  const days = useMemo(() => getDaysUntilFeast(churchData.feastDay), []);
+  const { church } = useChurchData();
+  const days = useMemo(() => getDaysUntilFeast(church.feastDay), [church.feastDay]);
 
   return (
     <View style={styles.card}>
       <View style={styles.left}>
         <View style={styles.iconWrap}>
-          <Ionicons name="star-outline" size={20} color={Colors.crimsonLight} />
+          <Ionicons name="star-outline" size={20} color="rgba(255,255,255,0.9)" />
         </View>
         <View style={styles.info}>
-          <AppText variant="label" color={Colors.crimsonLight} style={styles.label}>
+          <AppText variant="label" color="rgba(255,255,255,0.75)" style={styles.label}>
             KAPISTAHAN NG SIMBAHAN
           </AppText>
-          <AppText variant="headingSm" color={Colors.textInverse} numberOfLines={2}>
-            Kapistahan ni {churchData.patron}
+          <AppText variant="headingSm" color="#FFFFFF" numberOfLines={2}>
+            Kapistahan ni {church.patron}
           </AppText>
-          <AppText variant="caption" color={Colors.crimsonPale}>{churchData.feastDay}</AppText>
-          <AppText variant="caption" color={Colors.crimsonPale} style={styles.novena}>
+          <AppText variant="caption" color="rgba(255,255,255,0.7)">{church.feastDay}</AppText>
+          <AppText variant="caption" color="rgba(255,255,255,0.6)" style={styles.novena}>
             Magsimula ng nobena 9 araw bago
           </AppText>
         </View>
       </View>
       <View style={styles.countdown}>
-        <AppText variant="displayMd" color={Colors.textInverse} style={styles.days}>
+        <AppText variant="displayMd" color="#FFFFFF" style={styles.days}>
           {days}
         </AppText>
-        <AppText variant="caption" color={Colors.crimsonPale}>araw pa</AppText>
+        <AppText variant="caption" color="rgba(255,255,255,0.7)">araw pa</AppText>
       </View>
     </View>
   );
