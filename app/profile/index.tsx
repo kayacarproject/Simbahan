@@ -29,6 +29,7 @@ type AppUser = {
   barangay: string;
   municipality: string;
   avatar: string | null;
+  profile: string | null;
   role: string;
   roleId: string;
   emailVerified: boolean;
@@ -60,8 +61,11 @@ export default function ProfileScreen() {
       console.log('[PROFILE] Request:', body);
       const data = await getDataPublic(body);
       if (data?.success === true && data.data?.length > 0) {
-        console.log('[PROFILE] Response:', data.data[0]);
-        setUser(data.data[0]);
+        const raw = data.data[0];
+        console.log('[PROFILE] Response:', raw);
+        console.log('[PROFILE] profile field:', raw.profile);
+        console.log('[PROFILE] avatar field:', raw.avatar);
+        setUser(raw);
       } else {
         console.log('[PROFILE] No data:', data?.message);
         setUser(null);
@@ -152,7 +156,7 @@ export default function ProfileScreen() {
           {/* Hero */}
           <View style={s.heroCard}>
             <View style={s.avatarWrap}>
-              <Avatar uri={user?.avatar ?? undefined} name={fullName} size="lg" />
+              <Avatar uri={user?.profile ?? user?.avatar ?? undefined} name={fullName} size="lg" />
               <View style={s.avatarBorder} />
             </View>
             <AppText variant="displaySm" color={theme.primary} style={s.heroName}>{fullName || '—'}</AppText>

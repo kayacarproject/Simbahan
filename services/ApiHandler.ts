@@ -109,56 +109,6 @@ export const apiRegister = async (
   }
 };
 
-// export const getData = async (
-//   body: {
-//     appName: string;
-//     moduleName: string;
-//     query?: Record<string, unknown>;
-//     limit?: number;
-//     skip?: number;
-//     sortBy?: string;
-//     order?: 'ascending' | 'descending';
-//     [key: string]: unknown;
-//   },
-//   extraHeaders: Record<string, string> = {},
-// ) => {
-//   const url = `${Api.baseUrl}/mongo/getdata`;
-
-//   // Read from the canonical key written by login/register
-//   const token = await SecureStore.getItemAsync('access_token');
-
-//   console.log('[API] TOKEN:', token ? token.slice(0, 20) + '…' : 'NOT FOUND');
-
-//   if (!token) {
-//     console.log('[API] ERROR: No token found in storage');
-//     throw new Error('User not authenticated. Token missing.');
-//   }
-
-//   console.log('[API] GETDATA Request:', body);
-
-//   try {
-//     const res = await axios.post(url, body, {
-//       headers: {
-//         'Content-Type': 'application/json',
-//         Authorization: `Bearer ${token}`,
-//         ...(Api.apiKey ? { 'x-api-key': Api.apiKey } : {}),
-//         ...extraHeaders,
-//       },
-//       timeout: Api.timeout,
-//     });
-
-//     console.log('[API] GETDATA Response:', res.data);
-//     return res.data;
-//   } catch (error: any) {
-//     console.log('[API] GETDATA Error Full:', {
-//       message: error?.message,
-//       status:  error?.response?.status,
-//       data:    error?.response?.data,
-//     });
-//     throw error;
-//   }
-// };
-
 export const getPublicData = async (
   body: {
     appName: string;
@@ -231,6 +181,58 @@ export const getDataPublic = async (
     console.log('[API] getDataPublic Error:', error?.response?.data || error.message);
     if (error?.response?.status === 401) throw new Error('Session expired');
     throw new Error(error?.response?.data?.message || error.message);
+  }
+};
+
+// Upload image as multipart/form-data → returns downloadable URL
+export const uploadImage = async (localUri: string, fileName: string = 'photo.jpg'): Promise<string> => {
+  const token = await getToken();
+  if (!token) throw new Error('Token not found');
+
+  const url = `${Api.baseUrl}/files/upload`;
+
+  const formData = new FormData();
+  formData.append('file',              { uri: localUri, name: fileName, type: 'image/jpeg' } as any);
+  formData.append('appName',           Api.appName);
+  formData.append('moduleName',        'appuser');
+  formData.append('folder',            'profile');
+  formData.append('optimize',          'true');
+  formData.append('maxWidth',          '800');
+  formData.append('maxHeight',         '600');
+  formData.append('quality',           '80');
+  formData.append('format',            'webp');
+  formData.append('generateThumbnail', 'false');
+  formData.append('thumbnailWidth',    '200');
+  formData.append('thumbnailHeight',   '200');
+
+  console.log('[API] uploadImage Request:', { url, fileName });
+
+  try {
+    const res = await axios.post(url, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+      timeout: 30000,
+    });
+    console.log('[API] uploadImage Response:', res.data);
+    const imageUrl: string =
+      res.data?.data?.url ??
+      res.data?.data?.fileUrl ??
+      res.data?.data?.downloadUrl ??
+      res.data?.data?.imageUrl ??
+      res.data?.url ??
+      res.data?.fileUrl ??
+      (typeof res.data?.data === 'string' ? res.data.data : null);
+    if (!imageUrl) throw new Error('No image URL in response');
+    return imageUrl;
+  } catch (error: any) {
+    console.log('[API] uploadImage Error:', error?.response?.data || error.message);
+    if (error?.response?.status === 401) throw new Error('Session expired');
+    const msg = Array.isArray(error?.response?.data?.message)
+      ? error.response.data.message.join(', ')
+      : error?.response?.data?.message || error?.response?.data?.error || error.message;
+    throw new Error(msg);
   }
 };
 

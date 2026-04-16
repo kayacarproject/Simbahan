@@ -28,7 +28,7 @@ const Avatar = ({ uri, name, size = 'md' }: AvatarProps) => {
   const dim = sizeMap[size];
   const fontSize = fontSizeMap[size];
 
-  if (uri) {
+  if (uri && uri.startsWith('http')) {
     return (
       <Img
         source={{ uri }}
