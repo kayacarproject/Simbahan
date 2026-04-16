@@ -8,6 +8,7 @@ import Avatar from '../../components/ui/Avatar';
 import Badge from '../../components/ui/Badge';
 import EmptyState from '../../components/ui/EmptyState';
 import WebLayout from '../../components/ui/WebLayout';
+import PhotoViewer from '../../components/ui/PhotoViewer';
 import { ProfileHeroShimmer, ProfileCardShimmer } from '../../components/skeletons/ProfileShimmer';
 import { Spacing, Radius } from '../../constants/Layout';
 import { useChurchStore } from '../../store/churchStore';
@@ -90,6 +91,8 @@ export default function ProfileScreen() {
   const handleEdit = useCallback(() => router.push('/profile/edit' as never), []);
   const openSidebar = useUiStore((s) => s.openSidebar);
   const { church } = useChurchData();
+  const [photoViewerVisible, setPhotoViewerVisible] = useState(false);
+  const photoUri = user?.profile ?? user?.avatar ?? null;
 
   // ── Dynamic styles ────────────────────────────────────────────────────────
   const s = StyleSheet.create({
@@ -155,10 +158,19 @@ export default function ProfileScreen() {
         <>
           {/* Hero */}
           <View style={s.heroCard}>
-            <View style={s.avatarWrap}>
-              <Avatar uri={user?.profile ?? user?.avatar ?? undefined} name={fullName} size="lg" />
-              <View style={s.avatarBorder} />
-            </View>
+            <TouchableOpacity
+              onPress={() => { if (photoUri) setPhotoViewerVisible(true); }}
+              onLongPress={() => { if (photoUri) setPhotoViewerVisible(true); }}
+              delayLongPress={300}
+              activeOpacity={photoUri ? 0.8 : 1}
+              accessible
+              accessibilityLabel="Tap to view profile photo"
+            >
+              <View style={s.avatarWrap}>
+                <Avatar uri={photoUri ?? undefined} name={fullName} size="lg" />
+                <View style={s.avatarBorder} />
+              </View>
+            </TouchableOpacity>
             <AppText variant="displaySm" color={theme.primary} style={s.heroName}>{fullName || '—'}</AppText>
             <AppText variant="caption" color={theme.textMuted}>{user?.role ?? '—'}</AppText>
           </View>
@@ -218,5 +230,15 @@ export default function ProfileScreen() {
   );
 
   if (isWeb) return <WebLayout>{content}</WebLayout>;
-  return <SafeAreaView style={s.screen} edges={['top']}>{content}</SafeAreaView>;
+  return (
+    <>
+      <SafeAreaView style={s.screen} edges={['top']}>{content}</SafeAreaView>
+      <PhotoViewer
+        uri={photoUri ?? ''}
+        visible={photoViewerVisible && !!photoUri}
+        onClose={() => setPhotoViewerVisible(false)}
+        name={fullName}
+      />
+    </>
+  );
 }

@@ -47,7 +47,7 @@ const Img = ({ source, style, contentFit = 'cover', ...rest }: Props) => {
           objectFit: contentFit as any,
           width: width ?? '100%',
           height: height ?? '100%',
-          borderRadius,
+          borderRadius: borderRadius >= 9999 ? '50%' : borderRadius,
           borderTopLeftRadius,
           borderTopRightRadius,
           borderBottomLeftRadius,

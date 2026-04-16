@@ -8,3 +8,12 @@ expo-env.d.ts
 .env*.local
 node_modules
 .env
+
+# Expo
+.expo/
+.expo-shared/
+
+# Build output
+dist/
+web-build/
+build/
