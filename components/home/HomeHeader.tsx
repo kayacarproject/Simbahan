@@ -7,7 +7,7 @@ import { AppText, FloatingCross, LiturgicalBadge } from '../ui';
 import { useAuthStore } from '../../store/authStore';
 import { useChurchStore } from '../../store/churchStore';
 import { useUiStore } from '../../store/uiStore';
-import churchData from '../../data/church.json';
+import { useChurchData } from '../../hooks/useChurchData';
 
 const isWeb = Platform.OS === 'web';
 
@@ -43,6 +43,7 @@ const HomeHeader = ({ hasUnread }: HomeHeaderProps) => {
   const currentUser = useAuthStore((s) => s.currentUser);
   const liturgicalCalendar = useChurchStore((s) => s.liturgicalCalendar);
   const openSidebar = useUiStore((s) => s.openSidebar);
+  const { church } = useChurchData();
 
   const greeting = useMemo(() => getGreeting(), []);
   const dateStr = useMemo(() => getFilipinDate(), []);
@@ -87,7 +88,7 @@ const HomeHeader = ({ hasUnread }: HomeHeaderProps) => {
             {currentUser?.firstName ?? 'Kaibigan'}
           </AppText>
           <AppText variant="bodyMd" color={Colors.gold} style={styles.churchName} numberOfLines={1}>
-            {churchData.name}
+            {church.name}
           </AppText>
           <View style={styles.metaRow}>
             <LiturgicalBadge season={season} />

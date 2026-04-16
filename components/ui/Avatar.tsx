@@ -14,7 +14,7 @@ interface AvatarProps {
 }
 
 const sizeMap: Record<AvatarSize, number> = { sm: 32, md: 44, lg: 64 };
-const fontSizeMap: Record<AvatarSize, number> = { sm: 12, md: 16, lg: 22 };
+const fontSizeMap: Record<AvatarSize, number> = { sm: 12, md: 16, lg: 16 };
 
 const getInitials = (name?: string) => {
   if (!name) return '?';
@@ -47,7 +47,7 @@ const Avatar = ({ uri, name, size = 'md' }: AvatarProps) => {
       accessible
       accessibilityLabel={name ?? 'Avatar'}
     >
-      <AppText variant="label" color={Colors.textInverse} style={{ fontSize }}>
+      <AppText variant="label" color={Colors.textInverse} style={{ fontSize,fontWeight: 'bold' }}>
         {getInitials(name)}
       </AppText>
     </View>

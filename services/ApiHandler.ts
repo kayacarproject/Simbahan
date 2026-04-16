@@ -1,5 +1,4 @@
 import axios from 'axios';
-import * as SecureStore from 'expo-secure-store';
 import Api from './Api';
 import { getToken } from './authService';
 
@@ -14,75 +13,7 @@ async function authHeaders(extra: Record<string, string> = {}): Promise<Record<s
   };
 }
 
-// ── Core helpers ──────────────────────────────────────────────────────────────
 
-export const getRequest = async (endpoint: string, extraHeaders: Record<string, string> = {}) => {
-  const url = `${Api.baseUrl}${endpoint}`;
-  const headers = await authHeaders(extraHeaders);
-
-  console.log('[API] GET', url);
-  console.log('[API] Headers:', headers);
-
-  try {
-    const res = await axios.get(url, { headers, timeout: Api.timeout });
-    console.log('[API] Response:', res.data);
-    return res.data;
-  } catch (error: any) {
-    console.log('[API] Error:', error?.response?.data || error.message);
-    throw error;
-  }
-};
-
-export const postRequest = async (endpoint: string, body: unknown, extraHeaders: Record<string, string> = {}) => {
-  const url = `${Api.baseUrl}${endpoint}`;
-  const headers = await authHeaders(extraHeaders);
-
-  console.log('[API] POST', url);
-  console.log('[API] Body:', body);
-  console.log('[API] Headers:', headers);
-
-  try {
-    const res = await axios.post(url, body, { headers, timeout: Api.timeout });
-    console.log('[API] Response:', res.data);
-    return res.data;
-  } catch (error: any) {
-    console.log('[API] Error:', error?.response?.data || error.message);
-    throw error;
-  }
-};
-
-export const putRequest = async (endpoint: string, body: unknown, extraHeaders: Record<string, string> = {}) => {
-  const url = `${Api.baseUrl}${endpoint}`;
-  const headers = await authHeaders(extraHeaders);
-
-  console.log('[API] PUT', url);
-  console.log('[API] Body:', body);
-
-  try {
-    const res = await axios.put(url, body, { headers, timeout: Api.timeout });
-    console.log('[API] Response:', res.data);
-    return res.data;
-  } catch (error: any) {
-    console.log('[API] Error:', error?.response?.data || error.message);
-    throw error;
-  }
-};
-
-export const deleteRequest = async (endpoint: string, extraHeaders: Record<string, string> = {}) => {
-  const url = `${Api.baseUrl}${endpoint}`;
-  const headers = await authHeaders(extraHeaders);
-
-  console.log('[API] DELETE', url);
-
-  try {
-    const res = await axios.delete(url, { headers, timeout: Api.timeout });
-    console.log('[API] Response:', res.data);
-    return res.data;
-  } catch (error: any) {
-    console.log('[API] Error:', error?.response?.data || error.message);
-    throw error;
-  }
-};
 
 // ── API functions ─────────────────────────────────────────────────────────────
 
@@ -105,42 +36,42 @@ export const apiLogin = async (body: { appName: string; identifier: string; pass
   }
 };
 
-export const getDataPublic = async (endpoint: string, params?: Record<string, unknown>, extraHeaders: Record<string, string> = {}) => {
-  const url = `${Api.baseUrl}${endpoint}`;
+// export const getDataPublic = async (endpoint: string, params?: Record<string, unknown>, extraHeaders: Record<string, string> = {}) => {
+//   const url = `${Api.baseUrl}${endpoint}`;
 
-  console.log('[API] getDataPublic:', url, params ?? '');
+//   console.log('[API] getDataPublic:', url, params ?? '');
 
-  try {
-    const res = await axios.get(url, {
-      headers: { 'Content-Type': 'application/json', ...extraHeaders },
-      params,
-      timeout: Api.timeout,
-    });
+//   try {
+//     const res = await axios.get(url, {
+//       headers: { 'Content-Type': 'application/json', ...extraHeaders },
+//       params,
+//       timeout: Api.timeout,
+//     });
 
-    console.log('[API] Response:', res.data);
-    return res.data;
-  } catch (error: any) {
-    console.log('[API] Error:', error?.response?.data || error.message);
-    throw error;
-  }
-};
+//     console.log('[API] Response:', res.data);
+//     return res.data;
+//   } catch (error: any) {
+//     console.log('[API] Error:', error?.response?.data || error.message);
+//     throw error;
+//   }
+// };
 
-export const dynamicProcess = async (endpoint: string, body: unknown, extraHeaders: Record<string, string> = {}) => {
-  const url = `${Api.baseUrl}${endpoint}`;
-  const headers = await authHeaders(extraHeaders);
+// export const dynamicProcess = async (endpoint: string, body: unknown, extraHeaders: Record<string, string> = {}) => {
+//   const url = `${Api.baseUrl}${endpoint}`;
+//   const headers = await authHeaders(extraHeaders);
 
-  console.log('[API] dynamicProcess:', url);
-  console.log('[API] Body:', body);
+//   console.log('[API] dynamicProcess:', url);
+//   console.log('[API] Body:', body);
 
-  try {
-    const res = await axios.post(url, body, { headers, timeout: Api.timeout });
-    console.log('[API] Response:', res.data);
-    return res.data;
-  } catch (error: any) {
-    console.log('[API] Error:', error?.response?.data || error.message);
-    throw error;
-  }
-};
+//   try {
+//     const res = await axios.post(url, body, { headers, timeout: Api.timeout });
+//     console.log('[API] Response:', res.data);
+//     return res.data;
+//   } catch (error: any) {
+//     console.log('[API] Error:', error?.response?.data || error.message);
+//     throw error;
+//   }
+// };
 
 export const apiRegister = async (
   body: {
@@ -178,55 +109,55 @@ export const apiRegister = async (
   }
 };
 
-export const getData = async (
-  body: {
-    appName: string;
-    moduleName: string;
-    query?: Record<string, unknown>;
-    limit?: number;
-    skip?: number;
-    sortBy?: string;
-    order?: 'ascending' | 'descending';
-    [key: string]: unknown;
-  },
-  extraHeaders: Record<string, string> = {},
-) => {
-  const url = `${Api.baseUrl}/mongo/getdata`;
+// export const getData = async (
+//   body: {
+//     appName: string;
+//     moduleName: string;
+//     query?: Record<string, unknown>;
+//     limit?: number;
+//     skip?: number;
+//     sortBy?: string;
+//     order?: 'ascending' | 'descending';
+//     [key: string]: unknown;
+//   },
+//   extraHeaders: Record<string, string> = {},
+// ) => {
+//   const url = `${Api.baseUrl}/mongo/getdata`;
 
-  // Read from the canonical key written by login/register
-  const token = await SecureStore.getItemAsync('access_token');
+//   // Read from the canonical key written by login/register
+//   const token = await SecureStore.getItemAsync('access_token');
 
-  console.log('[API] TOKEN:', token ? token.slice(0, 20) + '…' : 'NOT FOUND');
+//   console.log('[API] TOKEN:', token ? token.slice(0, 20) + '…' : 'NOT FOUND');
 
-  if (!token) {
-    console.log('[API] ERROR: No token found in storage');
-    throw new Error('User not authenticated. Token missing.');
-  }
+//   if (!token) {
+//     console.log('[API] ERROR: No token found in storage');
+//     throw new Error('User not authenticated. Token missing.');
+//   }
 
-  console.log('[API] GETDATA Request:', body);
+//   console.log('[API] GETDATA Request:', body);
 
-  try {
-    const res = await axios.post(url, body, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-        ...(Api.apiKey ? { 'x-api-key': Api.apiKey } : {}),
-        ...extraHeaders,
-      },
-      timeout: Api.timeout,
-    });
+//   try {
+//     const res = await axios.post(url, body, {
+//       headers: {
+//         'Content-Type': 'application/json',
+//         Authorization: `Bearer ${token}`,
+//         ...(Api.apiKey ? { 'x-api-key': Api.apiKey } : {}),
+//         ...extraHeaders,
+//       },
+//       timeout: Api.timeout,
+//     });
 
-    console.log('[API] GETDATA Response:', res.data);
-    return res.data;
-  } catch (error: any) {
-    console.log('[API] GETDATA Error Full:', {
-      message: error?.message,
-      status:  error?.response?.status,
-      data:    error?.response?.data,
-    });
-    throw error;
-  }
-};
+//     console.log('[API] GETDATA Response:', res.data);
+//     return res.data;
+//   } catch (error: any) {
+//     console.log('[API] GETDATA Error Full:', {
+//       message: error?.message,
+//       status:  error?.response?.status,
+//       data:    error?.response?.data,
+//     });
+//     throw error;
+//   }
+// };
 
 export const getPublicData = async (
   body: {
@@ -260,5 +191,89 @@ export const getPublicData = async (
   } catch (error: any) {
     console.log('[API] PUBLIC GETDATA Error:', error?.response?.data || error.message);
     throw error;
+  }
+};
+
+export const getDataPublic = async (
+  body: {
+    appName: string;
+    moduleName: string;
+    query?: Record<string, unknown>;
+    limit?: number;
+    skip?: number;
+    sortBy?: string;
+    order?: 'ascending' | 'descending';
+    [key: string]: unknown;
+  },
+  extraHeaders: Record<string, string> = {},
+) => {
+  const token = await getToken();
+
+  if (!token) throw new Error('Token not found');
+
+  const url = `${Api.baseUrl}/mongo/getdata`;
+
+  console.log('[API] getDataPublic Request:', body);
+
+  try {
+    const res = await axios.post(url, body, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+        ...extraHeaders,
+      },
+      timeout: Api.timeout,
+    });
+
+    console.log('[API] getDataPublic Response:', res.data);
+    return res.data;
+  } catch (error: any) {
+    console.log('[API] getDataPublic Error:', error?.response?.data || error.message);
+    if (error?.response?.status === 401) throw new Error('Session expired');
+    throw new Error(error?.response?.data?.message || error.message);
+  }
+};
+
+export const updateDynamicData = async (
+  body: {
+    appName: string;
+    moduleName: string;
+    docId: string;
+    body: Record<string, unknown>;
+    [key: string]: unknown;
+  },
+  extraHeaders: Record<string, string> = {},
+) => {
+  const token = await getToken();
+
+  if (!token) throw new Error('Token not found');
+
+  const url = `${Api.baseUrl}/mongo/submitdata`;
+
+  console.log('[API] updateDynamicData Request:', body);
+
+  try {
+    const res = await axios.post(url, body, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+        ...extraHeaders,
+      },
+      timeout: Api.timeout,
+    });
+
+    console.log('[API] updateDynamicData Response:', res.data);
+    return res.data;
+  } catch (error: any) {
+    console.log(
+      '[API] updateDynamicData Error:',
+      error?.response?.data || error.message,
+    );
+
+    if (error?.response?.status === 401) {
+      throw new Error('Session expired');
+    }
+
+    throw new Error(error?.response?.data?.message || error.message);
   }
 };

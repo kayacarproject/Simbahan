@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { Colors } from '../../constants/Colors';
 import { Spacing } from '../../constants/Layout';
 import AppText from './AppText';
+import { useTheme } from '../../theme/ThemeContext';
 
 interface SectionHeaderProps {
   title: string;
@@ -10,11 +10,12 @@ interface SectionHeaderProps {
 }
 
 const SectionHeader = ({ title, onSeeAll }: SectionHeaderProps) => {
+  const { theme } = useTheme();
   const handlePress = useCallback(() => onSeeAll?.(), [onSeeAll]);
 
   return (
     <View style={styles.row}>
-      <AppText variant="headingMd" color={Colors.textPrimary}>{title}</AppText>
+      <AppText variant="headingMd" color={theme.text}>{title}</AppText>
       {onSeeAll && (
         <TouchableOpacity
           onPress={handlePress}
@@ -22,7 +23,7 @@ const SectionHeader = ({ title, onSeeAll }: SectionHeaderProps) => {
           accessibilityLabel={`See all ${title}`}
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
         >
-          <AppText variant="label" color={Colors.gold}>See all</AppText>
+          <AppText variant="label" color={theme.accent}>See all</AppText>
         </TouchableOpacity>
       )}
     </View>

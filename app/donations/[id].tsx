@@ -19,7 +19,6 @@ import { Spacing, Radius } from '../../constants/Layout';
 import { useChurchStore } from '../../store/churchStore';
 import { useAuthStore } from '../../store/authStore';
 import { useUiStore } from '../../store/uiStore';
-import fundsData from '../../data/donationFunds.json';
 
 const isWeb = Platform.OS === 'web';
 
@@ -31,8 +30,31 @@ const GCASH_STEPS = [
 ];
 
 export default function DonationDetailScreen() {
-  const { id } = useLocalSearchParams<{ id: string }>();
-  const fund = fundsData.find((f) => f.id === id);
+  const { id, title, description, goal, collected, startDate, endDate, gcashNumber, gcashName } =
+    useLocalSearchParams<{
+      id: string;
+      title: string;
+      description: string;
+      goal: string;
+      collected: string;
+      startDate: string;
+      endDate: string;
+      gcashNumber: string;
+      gcashName: string;
+    }>();
+
+  const fund = {
+    id,
+    title,
+    description,
+    goal: Number(goal),
+    collected: Number(collected),
+    startDate,
+    endDate,
+    gcashNumber,
+    gcashName,
+  };
+
   const logDonation = useChurchStore((s) => s.logDonation);
   const currentUser = useAuthStore((s) => s.currentUser);
   const showToast = useUiStore((s) => s.showToast);
@@ -66,7 +88,7 @@ export default function DonationDetailScreen() {
     router.back();
   }, [amount, date, note, fund, currentUser, logDonation, showToast]);
 
-  if (!fund) {
+  if (!id || !title) {
     return (
       <SafeAreaView style={styles.screen} edges={['top']}>
         <AppText variant="bodyMd" color={Colors.textMuted} style={{ padding: Spacing.lg }}>

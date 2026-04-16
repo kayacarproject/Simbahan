@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import * as SecureStore from 'expo-secure-store';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import GradientView from '../../components/ui/GradientView';
 import { Colors } from '../../constants/Colors';
@@ -22,6 +21,7 @@ import { AppText, FloatingCross } from '../../components/ui';
 import { useToast } from '../../hooks/useToast';
 import { useAuthStore } from '../../store/authStore';
 import { apiLogin } from '../../services/ApiHandler';
+import { STORAGE_KEY_TOKEN, STORAGE_KEY_USER_ID, setStorageItem } from '../../services/authService';
 import Api from '../../services/Api';
 import { a11y } from '../../utils/a11y';
 
@@ -71,8 +71,8 @@ export default function LoginScreen() {
         console.log('[LOGIN] UserID :', userId || '(not in response)');
 
         if (token) {
-          await SecureStore.setItemAsync('access_token', token);
-          if (userId) await SecureStore.setItemAsync('user_id', userId);
+          await setStorageItem(STORAGE_KEY_TOKEN, token);
+          if (userId) await setStorageItem(STORAGE_KEY_USER_ID, userId);
         }
 
         await loginStore(userId || undefined);

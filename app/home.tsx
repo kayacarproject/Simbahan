@@ -26,7 +26,7 @@ export default function HomeScreen() {
 
   const content = (
     <ScrollView
-      style={[styles.screen,]}
+      style={[styles.screen, { backgroundColor: theme.background }]}
       contentContainerStyle={styles.content}
       showsVerticalScrollIndicator={false}
       bounces={false}
@@ -60,8 +60,8 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1 },
-  content: { paddingBottom: Spacing.xxl },
-  gap: { height: Spacing.md },
+  screen:    { flex: 1 },
+  content:   { paddingBottom: Spacing.xxl },
+  gap:       { height: Spacing.md },
   bottomPad: { height: Spacing.xxl },
 });

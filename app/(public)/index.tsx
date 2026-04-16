@@ -23,7 +23,7 @@ import Animated, {
 import { Colors } from '../../constants/Colors';
 import { Spacing, Radius } from '../../constants/Layout';
 import { AppText } from '../../components/ui';
-import churchData from '../../data/church.json';
+import { useChurchDataStore } from '../../store/churchDataStore';
 
 const FEATURES = [
   { icon: 'calendar-outline' as const, title: 'Mass Schedule', desc: 'View weekly schedules at a glance.', color: Colors.navy },
@@ -68,6 +68,7 @@ function useFadeSlide(delay = 0) {
 export default function LandingPage() {
   const { width, height } = useWindowDimensions();
   const isWide = width >= 768;
+  const church = useChurchDataStore((s) => s.church);
 
   const handleLogin = useCallback(() => router.push('/(auth)/login'), []);
   const handleSignup = useCallback(() => router.push('/(auth)/register'), []);
@@ -150,13 +151,13 @@ export default function LandingPage() {
           <Animated.View style={[StyleSheet.flatten(styles.heroContent), heroAnimStyle]}>
             <View style={styles.heroPill}>
               <Ionicons name="location" size={12} color={Colors.gold} />
-              <AppText variant="caption" color={Colors.gold}> {churchData.diocese}</AppText>
+              <AppText variant="caption" color={Colors.gold}> {church.diocese}</AppText>
             </View>
             <AppText variant="displaySm" color={Colors.textInverse} style={styles.heroTitle}>
-              {churchData.name}
+              {church.name}
             </AppText>
             <AppText variant="bodyMd" color={Colors.goldLight} style={styles.heroSub}>
-              Est. {churchData.founded} · {churchData.city}
+              Est. {church.founded} · {church.city}
             </AppText>
             <View style={styles.heroCtas}>
               <TouchableOpacity onPress={handleSignup} style={styles.heroPrimary} activeOpacity={0.85} accessible accessibilityLabel="Get started">
@@ -225,7 +226,7 @@ export default function LandingPage() {
               "Ang simbahan ay hindi lamang isang gusali — ito ang ating pamilya."
             </AppText>
             <AppText variant="caption" color={Colors.goldLight} style={{ marginTop: Spacing.sm }}>
-              — {churchData.pastor}
+              — {church.pastor}
             </AppText>
           </View>
         </Animated.View>
@@ -241,7 +242,7 @@ export default function LandingPage() {
                 <AppText style={{ fontSize: 32, color: Colors.gold }}>✝</AppText>
               </View>
               <AppText variant="displaySm" color={Colors.navy} style={styles.ctaTitle}>
-                Join {churchData.name}
+                Join {church.name}
               </AppText>
               <AppText variant="bodyMd" color={Colors.textSecondary} style={styles.ctaDesc}>
                 Free for all parishioners. Connect, pray, and grow together.
@@ -280,13 +281,13 @@ export default function LandingPage() {
                 9 Active Ministries
               </AppText>
               <View style={styles.ministriesList}>
-                {churchData.ministries.slice(0, 6).map((m) => (
+                {church.ministries.split(',').slice(0, 6).map((m) => (
                   <View key={m} style={styles.ministryPill}>
-                    <AppText variant="caption" color={Colors.goldLight}>{m}</AppText>
+                    <AppText variant="caption" color={Colors.goldLight}>{m.trim()}</AppText>
                   </View>
                 ))}
                 <View style={styles.ministryPill}>
-                  <AppText variant="caption" color={Colors.goldLight}>+{churchData.ministries.length - 6} more</AppText>
+                  <AppText variant="caption" color={Colors.goldLight}>+{Math.max(0, church.ministries.split(',').length - 6)} more</AppText>
                 </View>
               </View>
             </View>
@@ -322,13 +323,13 @@ export default function LandingPage() {
           </View>
           <View style={styles.footerLinks}>
             <Ionicons name="call-outline" size={13} color={Colors.textMuted} />
-            <AppText variant="caption" color={Colors.textMuted}> {churchData.phone}</AppText>
+            <AppText variant="caption" color={Colors.textMuted}> {church.phone}</AppText>
             <AppText variant="caption" color={Colors.border}>  ·  </AppText>
             <Ionicons name="mail-outline" size={13} color={Colors.textMuted} />
-            <AppText variant="caption" color={Colors.textMuted}> {churchData.email}</AppText>
+            <AppText variant="caption" color={Colors.textMuted}> {church.email}</AppText>
           </View>
           <AppText variant="caption" color={Colors.textMuted}>
-            © 2025 {churchData.name} · {churchData.diocese}
+            © 2025 {church.name} · {church.diocese}
           </AppText>
         </View>
       </ScrollView>

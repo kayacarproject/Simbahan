@@ -54,6 +54,11 @@ function secureDel(key: string): Promise<void> {
 
 // ── Public helpers ────────────────────────────────────────────────────────
 
+/** Web-safe set — exported for use in login/register screens */
+export function setStorageItem(key: string, value: string): Promise<void> {
+  return secureSet(key, value);
+}
+
 /** Returns the stored access token, or null if not logged in. */
 export function getToken(): Promise<string | null> {
   return secureGet(STORAGE_KEY_TOKEN);
