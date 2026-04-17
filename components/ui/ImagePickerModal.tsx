@@ -25,6 +25,7 @@ interface Props {
   visible: boolean;
   onClose: () => void;
   onImageSelected: (uri: string) => void;
+  aspect?: [number, number]; // e.g. [1,1] square, [16,9] wide, undefined = free crop
 }
 
 const SHEET_HEIGHT = 220;
@@ -68,13 +69,13 @@ function WebFilePicker({ onImageSelected, onClose }: Omit<Props, 'visible'>) {
       accept="image/*"
       style={{ display: 'none' }}
       onChange={handleChange}
-      onCancel={onClose}
+      // onCancel={onClose}
     />
   );
 }
 
 // ── Mobile bottom sheet ──────────────────────────────────────────────────────
-export default function ImagePickerModal({ visible, onClose, onImageSelected }: Props) {
+export default function ImagePickerModal({ visible, onClose, onImageSelected, aspect }: Props) {
   const translateY = useSharedValue(SHEET_HEIGHT);
   const overlayOpacity = useSharedValue(0);
 
@@ -117,11 +118,11 @@ export default function ImagePickerModal({ visible, onClose, onImageSelected }: 
       return;
     }
     await requestAndLaunch(
-      () => ImagePicker.launchCameraAsync({ mediaTypes: ImagePicker.MediaTypeOptions.Images, quality: 0.8, allowsEditing: true, aspect: [1, 1] }),
+      () => ImagePicker.launchCameraAsync({ mediaTypes: ImagePicker.MediaTypeOptions.Images, quality: 0.8, allowsEditing: true, ...(aspect ? { aspect } : {}) }),
       onImageSelected,
       dismiss,
     );
-  }, [onImageSelected, dismiss, onClose]);
+  }, [onImageSelected, dismiss, onClose, aspect]);
 
   const openGallery = useCallback(async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -131,11 +132,11 @@ export default function ImagePickerModal({ visible, onClose, onImageSelected }: 
       return;
     }
     await requestAndLaunch(
-      () => ImagePicker.launchImageLibraryAsync({ mediaTypes: ImagePicker.MediaTypeOptions.Images, quality: 0.8, allowsEditing: true, aspect: [1, 1] }),
+      () => ImagePicker.launchImageLibraryAsync({ mediaTypes: ImagePicker.MediaTypeOptions.Images, quality: 0.8, allowsEditing: true, ...(aspect ? { aspect } : {}) }),
       onImageSelected,
       dismiss,
     );
-  }, [onImageSelected, dismiss, onClose]);
+  }, [onImageSelected, dismiss, onClose, aspect]);
 
   // Web: render invisible file input
   if (Platform.OS === 'web') {

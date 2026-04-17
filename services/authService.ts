@@ -34,21 +34,19 @@ export interface LoginResponse {
 
 export const REFRESH_TOKEN_KEY = 'simbahan_refresh_token';
 
-// SecureStore has no web support — fall back to in-memory on web
-const memStore: Record<string, string> = {};
-
+// SecureStore has no web support — fall back to localStorage on web
 function secureSet(key: string, value: string): Promise<void> {
-  if (Platform.OS === 'web') { memStore[key] = value; return Promise.resolve(); }
+  if (Platform.OS === 'web') { localStorage.setItem(key, value); return Promise.resolve(); }
   return SecureStore.setItemAsync(key, value);
 }
 
 function secureGet(key: string): Promise<string | null> {
-  if (Platform.OS === 'web') return Promise.resolve(memStore[key] ?? null);
+  if (Platform.OS === 'web') return Promise.resolve(localStorage.getItem(key));
   return SecureStore.getItemAsync(key);
 }
 
 function secureDel(key: string): Promise<void> {
-  if (Platform.OS === 'web') { delete memStore[key]; return Promise.resolve(); }
+  if (Platform.OS === 'web') { localStorage.removeItem(key); return Promise.resolve(); }
   return SecureStore.deleteItemAsync(key);
 }
 
