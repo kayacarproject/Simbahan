@@ -77,6 +77,8 @@ export default function EditProfileScreen() {
   const [loading,       setLoading]       = useState(false);
   const [saving,        setSaving]        = useState(false);
   const [uploadingImg,  setUploadingImg]  = useState(false);
+  const [removingImg,   setRemovingImg]   = useState(false);
+  const [confirmRemove, setConfirmRemove] = useState(false);
   const [imgModalOpen,  setImgModalOpen]  = useState(false);
 
   // ── Fetch ────────────────────────────────────────────────────────────────
@@ -132,6 +134,28 @@ export default function EditProfileScreen() {
       showToast(e?.message || 'Hindi na-upload ang larawan.', 'error');
     } finally {
       setUploadingImg(false);
+    }
+  }, [showToast]);
+
+  // ── Image remove ─────────────────────────────────────────────────────────
+  const handleRemoveImage = useCallback(async () => {
+    setConfirmRemove(false);
+    setRemovingImg(true);
+    try {
+      const docId = await getUserId();
+      if (docId) {
+        await updateDynamicData({
+          appName: Api.appName, moduleName: 'appuser', docId,
+          body: { profile: '' },
+        });
+      }
+      setAvatar(null);
+      showToast('Natanggal ang larawan.', 'success');
+    } catch (e: any) {
+      console.log('[EDIT PROFILE] Remove Image Error:', e?.message);
+      showToast(e?.message || 'Hindi natanggal ang larawan.', 'error');
+    } finally {
+      setRemovingImg(false);
     }
   }, [showToast]);
 
@@ -210,6 +234,13 @@ export default function EditProfileScreen() {
     modalHeader:   { flexDirection: 'row' as const, alignItems: 'center' as const, justifyContent: 'space-between' as const, paddingBottom: Spacing.sm, borderBottomWidth: 1, borderBottomColor: theme.border, marginBottom: Spacing.sm },
     iosPicker:     { width: '100%' as any },
     webDoneBtn:    { backgroundColor: theme.primary, borderRadius: Radius.sm, padding: Spacing.sm, alignItems: 'center' as const, marginTop: Spacing.md },
+    confirmOverlay: { justifyContent: 'center' as const },
+    confirmCard:   { backgroundColor: theme.surface, borderRadius: Radius.lg, padding: Spacing.xl, marginHorizontal: Spacing.xl, alignItems: 'center' as const, gap: Spacing.sm },
+    confirmIconWrap: { width: 56, height: 56, borderRadius: 28, backgroundColor: theme.dangerPale, alignItems: 'center' as const, justifyContent: 'center' as const, marginBottom: Spacing.xs },
+    confirmTitle:  { textAlign: 'center' as const },
+    confirmMsg:    { textAlign: 'center' as const, marginBottom: Spacing.sm },
+    confirmBtns:   { flexDirection: 'row' as const, gap: Spacing.sm, width: '100%' as any },
+    confirmBtn:    { flex: 1, borderWidth: 1, borderRadius: Radius.sm, paddingVertical: Spacing.sm, alignItems: 'center' as const },
   });
 
   const content = (
@@ -244,11 +275,25 @@ export default function EditProfileScreen() {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setImgModalOpen(true)} style={s.changePhotoBtn} accessible accessibilityLabel="Palitan ang larawan">
-              <AppText variant="label" color={theme.primary}>
-                {uploadingImg ? 'Ina-upload...' : 'Palitan ang Larawan'}
-              </AppText>
-            </TouchableOpacity>
+            <View style={{ flexDirection: 'row', gap: Spacing.sm }}>
+              <TouchableOpacity onPress={() => setImgModalOpen(true)} style={s.changePhotoBtn} accessible accessibilityLabel="Palitan ang larawan">
+                <AppText variant="label" color={theme.primary}>
+                  {uploadingImg ? 'Ina-upload...' : 'Palitan ang Larawan'}
+                </AppText>
+              </TouchableOpacity>
+              {!!avatar && (
+                <TouchableOpacity
+                  onPress={() => setConfirmRemove(true)}
+                  disabled={removingImg}
+                  style={[s.changePhotoBtn, { borderColor: theme.danger }]}
+                  accessible accessibilityLabel="Tanggalin ang larawan"
+                >
+                  <AppText variant="label" color={theme.danger}>
+                    {removingImg ? 'Tinatanggal...' : 'Tanggalin'}
+                  </AppText>
+                </TouchableOpacity>
+              )}
+            </View>
           </View>
 
           {/* Form */}
@@ -312,6 +357,39 @@ export default function EditProfileScreen() {
           </View>
         </Modal>
       )}
+
+      {/* Confirm remove image modal */}
+      <Modal visible={confirmRemove} transparent animationType="fade">
+        <View style={[s.modalOverlay, s.confirmOverlay]}>
+          <View style={s.confirmCard}>
+            <View style={s.confirmIconWrap}>
+              <Ionicons name="trash-outline" size={28} color={theme.danger} />
+            </View>
+            <AppText variant="headingSm" color={theme.primary} style={s.confirmTitle}>
+              Tanggalin ang Larawan?
+            </AppText>
+            <AppText variant="bodySm" color={theme.textMuted} style={s.confirmMsg}>
+              Matatanggal ang iyong profile photo. Hindi ito mababawi.
+            </AppText>
+            <View style={s.confirmBtns}>
+              <TouchableOpacity
+                onPress={() => setConfirmRemove(false)}
+                style={[s.confirmBtn, { borderColor: theme.border, backgroundColor: theme.surface2 }]}
+                accessible accessibilityLabel="Kanselahin"
+              >
+                <AppText variant="label" color={theme.textSecondary}>Kanselahin</AppText>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={handleRemoveImage}
+                style={[s.confirmBtn, { backgroundColor: theme.danger, borderColor: theme.danger }]}
+                accessible accessibilityLabel="Oo, tanggalin"
+              >
+                <AppText variant="label" color={theme.textInverse}>Oo, Tanggalin</AppText>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
 
       {/* Web date picker modal */}
       {isWeb && showDatePicker && (

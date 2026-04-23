@@ -167,7 +167,7 @@ export default function ProfileScreen() {
               accessibilityLabel="Tap to view profile photo"
             >
               <View style={s.avatarWrap}>
-                <Avatar uri={photoUri ?? undefined} name={fullName} size="lg" />
+                <Avatar uri={photoUri ?? undefined} name={fullName} size="xl" />
                 <View style={s.avatarBorder} />
               </View>
             </TouchableOpacity>

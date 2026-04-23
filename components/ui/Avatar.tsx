@@ -5,7 +5,7 @@ import { Colors } from '../../constants/Colors';
 import { Radius } from '../../constants/Layout';
 import AppText from './AppText';
 
-type AvatarSize = 'sm' | 'md' | 'lg';
+type AvatarSize = 'sm' | 'md' | 'lg' | 'xl';
 
 interface AvatarProps {
   uri?: string;
@@ -13,8 +13,8 @@ interface AvatarProps {
   size?: AvatarSize;
 }
 
-const sizeMap: Record<AvatarSize, number> = { sm: 32, md: 44, lg: 64 };
-const fontSizeMap: Record<AvatarSize, number> = { sm: 12, md: 16, lg: 16 };
+const sizeMap: Record<AvatarSize, number> = { sm: 32, md: 44, lg: 64, xl: 74 };
+const fontSizeMap: Record<AvatarSize, number> = { sm: 12, md: 16, lg: 16, xl: 18 };
 
 const getInitials = (name?: string) => {
   if (!name) return '?';
